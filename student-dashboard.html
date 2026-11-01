@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard | UPSInfaq</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#f4f7f2;color:#20392e}
+.sidebar{width:250px;background:#064e3b;color:white;position:fixed;inset:0 auto 0 0;padding:28px 20px;display:flex;flex-direction:column}
+.logo{text-align:center;color:#f5d58a;font-size:26px;font-weight:800;margin-bottom:5px}
+.tagline{text-align:center;font-size:10px;color:#d5c28f;margin-bottom:38px}
+.menu-label{font-size:10px;color:#a9c8b8;letter-spacing:1.5px;margin:12px 10px}
+.menu a{display:block;text-decoration:none;color:#e4eee8;padding:13px 14px;border-radius:10px;font-size:13px;margin-bottom:5px}
+.menu a.active,.menu a:hover{background:#0c7254;color:#fff}
+.logout{margin-top:auto;text-decoration:none;color:#f5d58a;padding:13px;font-size:13px}
+.main{margin-left:250px;padding:32px;max-width:1500px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:30px}
+.welcome h1{font-size:25px;color:#064e3b}
+.welcome p{font-size:13px;color:#829087;margin-top:6px}
+.profile{background:white;padding:11px 16px;border-radius:12px;font-size:12px;border:1px solid #e4ebe4}
+.profile strong{color:#087653}
+.banner{background:linear-gradient(120deg,#064e3b,#0d7657);border-radius:18px;padding:27px;color:white;margin-bottom:25px;position:relative;overflow:hidden}
+.banner h2{font-size:22px;color:#f5d58a;margin-bottom:9px}
+.banner p{font-size:13px;line-height:1.7;max-width:600px;color:#e3f0e9}
+.banner small{display:inline-block;margin-top:15px;color:#f5d58a;font-weight:700}
+.section-title{font-size:17px;color:#174b37;margin:26px 0 15px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.stat,.panel,.action{background:white;border:1px solid #e6ece5;border-radius:15px;padding:19px}
+.stat small{font-size:12px;color:#839087}
+.stat h2{font-size:27px;color:#075b42;margin:10px 0 4px}
+.stat span{font-size:11px;color:#a18448}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.action{transition:.2s}
+.action:hover{transform:translateY(-3px);border-color:#c7a95e}
+.action .emoji{font-size:25px;margin-bottom:13px}
+.action h3{font-size:14px;color:#14523a;margin-bottom:7px}
+.action p{font-size:11px;line-height:1.6;color:#849087;margin-bottom:15px}
+.action a{font-size:12px;color:#087653;font-weight:700;text-decoration:none}
+.panel{margin-top:20px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.panel-head h3{font-size:15px;color:#14523a}
+.panel-head a{font-size:11px;color:#087653;text-decoration:none}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;color:#839087;font-weight:600;padding:12px 8px;border-bottom:1px solid #edf0eb}
+td{padding:14px 8px;border-bottom:1px solid #f0f2ef}
+.status{background:#fff4d8;color:#9b762b;padding:5px 9px;border-radius:20px;font-size:10px}
+.empty{text-align:center;color:#98a29a;padding:25px}
+.footer{text-align:center;color:#a0aaa2;font-size:10px;margin-top:30px}
+@media(max-width:900px){.sidebar{width:200px}.main{margin-left:200px;padding:22px}.stats{grid-template-columns:repeat(2,1fr)}.actions{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.sidebar{position:relative;width:100%;height:auto;padding:18px}.logo{font-size:23px}.tagline{margin-bottom:15px}.menu{display:flex;overflow-x:auto;gap:5px}.menu-label{display:none}.menu a{white-space:nowrap;padding:10px;font-size:11px}.logout{margin-top:5px;padding:8px}.main{margin:0;padding:17px}.topbar{align-items:flex-start;flex-direction:column}.stats{gap:9px}.stat{padding:13px}.actions{grid-template-columns:1fr}.banner{padding:21px}.panel{overflow-x:auto}table{min-width:500px}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="logo">UPSInfaq</div>
+  <div class="tagline">ONE DONATION. COUNTLESS HOPES.</div>
+  <div class="menu-label">STUDENT MENU</div>
+  <nav class="menu">
+    <a href="student-dashboard.html" class="active">⌂ Dashboard</a>
+    <a href="#application">♡ Food Assistance</a>
+    <a href="#wallet">▣ e-Food Wallet</a>
+    <a href="#qr">▦ QR Claim</a>
+    <a href="#history">◷ Claim History</a>
+    <a href="#feedback">✉ Feedback</a>
+  </nav>
+  <a href="login.html" class="logout">↪ Log Out</a>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div class="welcome">
+      <h1>Student Dashboard</h1>
+      <p>Welcome to your UPSInfaq student portal.</p>
+    </div>
+    <div class="profile">👤 <strong>Student Account</strong></div>
+  </header>
+
+  <section class="banner">
+    <h2>Assalamualaikum, Student! 🌿</h2>
+    <p>Every student deserves access to nutritious food. UPSInfaq connects students with food assistance through a caring campus community.</p>
+    <small>ONE DONATION. COUNTLESS HOPES.</small>
+  </section>
+
+  <h2 class="section-title">Your Overview</h2>
+  <section class="stats">
+    <div class="stat"><small>Application Status</small><h2>—</h2><span>Awaiting account connection</span></div>
+    <div class="stat"><small>Wallet Balance</small><h2>RM —</h2><span>e-Food Wallet</span></div>
+    <div class="stat"><small>Food Claims</small><h2>—</h2><span>Total successful claims</span></div>
+    <div class="stat"><small>Available Vouchers</small><h2>—</h2><span>Active food vouchers</span></div>
+  </section>
+
+  <h2 class="section-title">Quick Actions</h2>
+  <section class="actions">
+    <article class="action" id="application">
+      <div class="emoji">🍱</div>
+      <h3>Apply for Food Assistance</h3>
+      <p>Submit your application and required supporting information.</p>
+      <a href="#application">Apply Now →</a>
+    </article>
+
+    <article class="action" id="wallet">
+      <div class="emoji">💳</div>
+      <h3>My e-Food Wallet</h3>
+      <p>View your food assistance balance and available vouchers.</p>
+      <a href="#wallet">View Wallet →</a>
+    </article>
+
+    <article class="action" id="qr">
+      <div class="emoji">▦</div>
+      <h3>QR Food Claim</h3>
+      <p>Access your approved QR claim when a voucher is issued.</p>
+      <a href="#qr">View QR Claim →</a>
+    </article>
+
+    <article class="action" id="history">
+      <div class="emoji">📋</div>
+      <h3>Claim History</h3>
+      <p>Review your previous food collection records.</p>
+      <a href="#history">View History →</a>
+    </article>
+
+    <article class="action" id="feedback">
+      <div class="emoji">💬</div>
+      <h3>Feedback & Support</h3>
+      <p>Share your experience and help improve UPSInfaq.</p>
+      <a href="#feedback">Send Feedback →</a>
+    </article>
+
+    <article class="action">
+      <div class="emoji">🔔</div>
+      <h3>Notifications</h3>
+      <p>Stay informed about applications, vouchers and announcements.</p>
+      <a href="#notifications">View Updates →</a>
+    </article>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h3>Recent Food Claims</h3>
+      <a href="#history">View All</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Reference</th><th>Food / Voucher</th><th>Date</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="4" class="empty">No claim records yet. Your records will appear here after the system is connected.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="footer">© 2026 UPSInfaq · Universiti Pendidikan Sultan Idris</div>
+</main>
+</body>
+</html>
