@@ -8,20 +8,14 @@
   <style>
     * { box-sizing: border-box; }
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #071b16;
-      color: #f5f1df;
+      margin: 0; font-family: Arial, sans-serif;
+      background: #071b16; color: #f5f1df;
     }
     header {
-      background: #0d3025;
-      border-bottom: 1px solid #b99a48;
-      padding: 20px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
+      background: #0d3025; border-bottom: 1px solid #b99a48;
+      padding: 20px 7%; display: flex;
+      justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
     }
     .brand { color: #e2c16b; font-size: 25px; font-weight: bold; }
     header a { color: #f5f1df; text-decoration: none; }
@@ -29,70 +23,26 @@
     h1, h2 { color: #e2c16b; }
     .muted { color: #b9c9c0; line-height: 1.6; }
     .card {
-      background: #102820;
-      border: 1px solid #315544;
-      border-radius: 16px;
-      padding: 25px;
-      margin: 20px 0;
+      background: #102820; border: 1px solid #315544;
+      border-radius: 16px; padding: 25px; margin: 20px 0;
     }
-    .qr-area {
-      background: #fff;
-      width: 230px;
-      height: 230px;
-      margin: 25px auto;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #222;
-      text-align: center;
-      padding: 15px;
+    .claim {
+      border: 1px solid #315544; border-radius: 12px;
+      padding: 18px; margin: 15px 0;
     }
-    .qr-placeholder {
-      width: 145px;
-      height: 145px;
-      border: 5px dashed #777;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 13px;
-      color: #555;
-      font-weight: bold;
-    }
-    .claim-id {
-      text-align: center;
-      font-size: 18px;
-      color: #e2c16b;
-      font-weight: bold;
-    }
-    .info {
-      background: #263b2d;
-      border-left: 4px solid #e2c16b;
-      padding: 15px;
-      border-radius: 8px;
-      line-height: 1.6;
-      margin: 20px 0;
-    }
+    .claim-id { color: #e2c16b; font-weight: bold; overflow-wrap: anywhere; }
+    .status { color: #e2c16b; font-weight: bold; }
     .detail {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 13px 0;
-      border-bottom: 1px solid #29483b;
-      flex-wrap: wrap;
+      display: flex; justify-content: space-between;
+      gap: 12px; padding: 13px 0;
+      border-bottom: 1px solid #29483b; flex-wrap: wrap;
     }
-    .detail:last-child { border: none; }
     .value { color: #e2c16b; font-weight: bold; }
     .button {
-      display: inline-block;
-      background: #c5a653;
-      color: #102820;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      margin-top: 12px;
+      display: inline-block; background: #c5a653;
+      color: #102820; text-decoration: none;
+      padding: 12px 20px; border-radius: 8px;
+      font-weight: bold; margin-top: 12px;
     }
     .center { text-align: center; }
     footer { text-align: center; padding: 25px; color: #91a69a; font-size: 13px; }
@@ -107,52 +57,21 @@
 
 <main>
   <h1>Food Claim / Penebusan Makanan</h1>
-  <p class="muted">Gunakan halaman ini untuk menunjukkan kod penebusan kepada pihak kedai makanan yang mengambil bahagian.</p>
-
-  <div class="card center">
-    <h2>Kod QR Penebusan</h2>
-    <p class="muted">Contoh paparan kod QR pelajar</p>
-
-    <div class="qr-area">
-      <div class="qr-placeholder">QR CODE<br>DEMO SAHAJA</div>
-      <small style="margin-top:8px;">UPSInfaq</small>
-    </div>
-
-    <div class="claim-id">UPSI-CLAIM-0001</div>
-    <p class="muted">Status: Menunggu pengaktifan</p>
-  </div>
-
-  <div class="info">
-    <strong>Perhatian:</strong> Kod di atas hanyalah contoh paparan. Ia belum boleh diimbas atau digunakan untuk menebus makanan. Kod QR sebenar akan dijana secara selamat selepas sistem backend disambungkan.
-  </div>
+  <p class="muted">Semak rekod tuntutan bantuan makanan anda di sini.</p>
 
   <div class="card">
-    <h2>Maklumat Penebusan</h2>
-    <div class="detail">
-      <span>Nama Pelajar</span>
-      <span class="value">Pelajar UPSI</span>
-    </div>
-    <div class="detail">
-      <span>ID Tuntutan</span>
-      <span class="value">UPSI-CLAIM-0001</span>
-    </div>
-    <div class="detail">
-      <span>Jenis Bantuan</span>
-      <span class="value">Bantuan Makanan</span>
-    </div>
-    <div class="detail">
-      <span>Status</span>
-      <span class="value">Belum Aktif</span>
-    </div>
+    <h2>Rekod Tuntutan Saya</h2>
+    <p class="muted" id="message">Sedang memuatkan rekod tuntutan...</p>
+    <div id="claims"></div>
   </div>
 
   <div class="card">
     <h2>Cara Menebus Makanan</h2>
     <p class="muted">1. Pastikan permohonan bantuan makanan anda telah diluluskan.</p>
-    <p class="muted">2. Pergi ke kedai makanan yang mengambil bahagian.</p>
-    <p class="muted">3. Tunjukkan QR Code penebusan kepada petugas kedai.</p>
-    <p class="muted">4. Petugas mengesahkan tuntutan melalui sistem UPSInfaq.</p>
-    <p class="muted">5. Setelah disahkan, rekod penebusan akan disimpan dalam sejarah wallet.</p>
+    <p class="muted">2. Semak arahan penebusan daripada pihak penganjur.</p>
+    <p class="muted">3. Tunjukkan kod tuntutan kepada petugas kedai apabila diarahkan.</p>
+    <p class="muted">4. Petugas perlu mengesahkan tuntutan melalui sistem UPSInfaq.</p>
+    <p class="muted">5. Rekod penebusan akan dikemas kini selepas pengesahan.</p>
   </div>
 
   <div class="center">
@@ -160,9 +79,106 @@
   </div>
 </main>
 
-<footer>
-  © 2026 UPSInfaq — One Donation. Countless Hopes.
-</footer>
+<footer>© 2026 UPSInfaq — One Donation. Countless Hopes.</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://xyqtowmquptichpkvbwn.supabase.co";
+const SUPABASE_KEY = "sb_publishable_80HFOvfbeOTnDJUTakdrPA_30Im5_Vt";
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL, SUPABASE_KEY
+);
+
+const message = document.getElementById("message");
+const claimsContainer = document.getElementById("claims");
+
+function formatDate(value) {
+  if (!value) return "-";
+  return new Date(value).toLocaleString("ms-MY");
+}
+
+function statusLabel(status) {
+  const labels = {
+    pending: "Menunggu pengesahan",
+    approved: "Diluluskan",
+    redeemed: "Telah ditebus",
+    cancelled: "Dibatalkan"
+  };
+  return labels[status] || status;
+}
+
+async function loadClaims() {
+  const { data: authData, error: authError } =
+    await supabaseClient.auth.getUser();
+
+  if (authError || !authData.user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  const user = authData.user;
+
+  const { data: profile, error: profileError } =
+    await supabaseClient
+      .from("profiles")
+      .select("full_name, role")
+      .eq("id", user.id)
+      .single();
+
+  if (profileError || profile.role !== "student") {
+    message.textContent = "Halaman ini hanya untuk akaun Student.";
+    return;
+  }
+
+  const { data: claims, error } = await supabaseClient
+    .from("food_transactions")
+    .select("id, quantity, claim_code, status, claimed_at, created_at")
+    .eq("student_id", user.id)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    message.textContent = "Tidak dapat memuatkan rekod: " + error.message;
+    return;
+  }
+
+  if (!claims || claims.length === 0) {
+    message.textContent = "Belum ada rekod tuntutan makanan untuk akaun anda.";
+    return;
+  }
+
+  message.textContent = "Nama pelajar: " + profile.full_name +
+    " · Jumlah rekod: " + claims.length;
+
+  claimsContainer.innerHTML = "";
+
+  claims.forEach((claim, index) => {
+    const item = document.createElement("div");
+    item.className = "claim";
+
+    const title = document.createElement("h3");
+    title.className = "claim-id";
+    title.textContent = "Tuntutan #" + (index + 1);
+
+    const code = document.createElement("p");
+    code.textContent = "Kod tuntutan: " + claim.claim_code;
+
+    const quantity = document.createElement("p");
+    quantity.textContent = "Kuantiti: " + claim.quantity;
+
+    const status = document.createElement("p");
+    status.className = "status";
+    status.textContent = "Status: " + statusLabel(claim.status);
+
+    const date = document.createElement("p");
+    date.className = "muted";
+    date.textContent = "Tarikh tuntutan: " + formatDate(claim.created_at);
+
+    item.append(title, code, quantity, status, date);
+    claimsContainer.appendChild(item);
+  });
+}
+
+loadClaims();
+</script>
 </body>
 </html>
