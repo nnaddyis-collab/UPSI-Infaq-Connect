@@ -287,19 +287,46 @@
   </main>
 
   <script>
-    document.getElementById("registerForm").addEventListener("submit", function(event) {
-      event.preventDefault();
+    
+document.getElementById("registerForm").addEventListener("submit", async function(event) {
+  event.preventDefault();
 
-      const password = document.getElementById("password").value;
-      const confirmPassword = document.getElementById("confirmPassword").value;
+  const fullName = document.getElementById("fullname").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const role = document.getElementById("role").value;
 
-      if (password !== confirmPassword) {
-        alert("Password tidak sama. Sila semak semula.");
-        return;
+  if (password !== confirmPassword) {
+    alert("Password tidak sama. Sila semak semula.");
+    return;
+  }
+
+  if (!["student", "donor"].includes(role)) {
+    alert("Buat masa ini, pendaftaran hanya dibuka untuk Student dan Donor.");
+    return;
+  }
+
+  const { data, error } = await supabaseClient.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: {
+        full_name: fullName,
+        role: role
       }
+    }
+  });
 
-      alert("Reka bentuk pendaftaran berjaya diuji! Fungsi pendaftaran akaun sebenar akan disambungkan melalui sistem keselamatan UPSInfaq.");
-    });
+  if (error) {
+    alert("Pendaftaran gagal: " + error.message);
+    return;
+  }
+
+  alert("Pendaftaran berjaya! Sila semak email untuk pengesahan akaun jika diminta.");
+  window.location.href = "login.html";
+});
+
   </script>
   
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
