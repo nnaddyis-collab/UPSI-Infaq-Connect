@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donor Dashboard | UPSInfaq</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#f4f7f2;color:#20392e}
+.sidebar{width:245px;background:#064e3b;color:white;position:fixed;inset:0 auto 0 0;padding:27px 19px;display:flex;flex-direction:column}
+.logo{text-align:center;color:#f5d58a;font-size:26px;font-weight:800}
+.tagline{text-align:center;font-size:10px;color:#d5c28f;margin:6px 0 38px}
+.menu-label{font-size:10px;color:#a9c8b8;letter-spacing:1.5px;margin:12px 10px}
+.menu a{display:block;text-decoration:none;color:#e4eee8;padding:13px 14px;border-radius:10px;font-size:13px;margin-bottom:5px}
+.menu a.active,.menu a:hover{background:#0c7254}
+.logout{margin-top:auto;text-decoration:none;color:#f5d58a;padding:13px;font-size:13px}
+.main{margin-left:245px;padding:32px;max-width:1500px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:27px;gap:15px}
+h1{font-size:25px;color:#064e3b}
+.welcome p{font-size:13px;color:#829087;margin-top:6px}
+.profile{background:white;padding:11px 15px;border-radius:12px;font-size:12px;border:1px solid #e4ebe4}
+.profile strong{color:#087653}
+.banner{background:linear-gradient(120deg,#064e3b,#0d7657);border-radius:18px;padding:27px;color:white;margin-bottom:25px}
+.banner h2{font-size:22px;color:#f5d58a;margin-bottom:9px}
+.banner p{font-size:13px;line-height:1.7;color:#e3f0e9}
+.section-title{font-size:17px;color:#174b37;margin:26px 0 15px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{background:white;border:1px solid #e6ece5;border-radius:15px;padding:18px}
+.stat small{font-size:12px;color:#839087}
+.stat h2{font-size:26px;color:#075b42;margin:10px 0 4px}
+.stat span{font-size:11px;color:#a18448}
+.categories{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.category{background:white;border:1px solid #e6ece5;border-radius:16px;padding:21px}
+.category .emoji{font-size:30px;margin-bottom:12px}
+.category h3{font-size:16px;color:#14523a;margin-bottom:8px}
+.category p{font-size:12px;line-height:1.7;color:#839087;margin-bottom:16px}
+.category a,.action-link{display:inline-block;text-decoration:none;background:#087653;color:white;padding:11px 15px;border-radius:9px;font-size:12px;font-weight:700}
+.category a:hover,.action-link:hover{background:#064e3b}
+.panel{background:white;border:1px solid #e6ece5;border-radius:15px;padding:20px;margin-top:20px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.panel-head h3{font-size:15px;color:#14523a}
+.panel-head a{font-size:11px;color:#087653;text-decoration:none}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;color:#839087;font-weight:600;padding:12px 8px;border-bottom:1px solid #edf0eb}
+td{padding:14px 8px;border-bottom:1px solid #f0f2ef}
+.empty{text-align:center;color:#98a29a;padding:25px}
+.impact{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:15px}
+.impact-item{background:#f4f8f2;border-radius:12px;padding:16px;text-align:center}
+.impact-item strong{display:block;color:#087653;font-size:23px;margin-bottom:5px}
+.impact-item span{font-size:11px;color:#718078}
+.footer{text-align:center;color:#a0aaa2;font-size:10px;margin-top:30px}
+@media(max-width:900px){.sidebar{width:200px}.main{margin-left:200px;padding:22px}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.sidebar{position:relative;width:100%;height:auto;padding:18px}.tagline{margin-bottom:15px}.menu{display:flex;overflow-x:auto;gap:5px}.menu-label{display:none}.menu a{white-space:nowrap;padding:10px;font-size:11px}.logout{margin-top:5px}.main{margin:0;padding:17px}.topbar{align-items:flex-start;flex-direction:column}.categories{grid-template-columns:1fr}.impact{grid-template-columns:1fr}.panel{overflow-x:auto}table{min-width:480px}.banner{padding:21px}}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="logo">UPSInfaq</div>
+  <div class="tagline">ONE DONATION. COUNTLESS HOPES.</div>
+  <div class="menu-label">DONOR MENU</div>
+  <nav class="menu">
+    <a href="donor-dashboard.html" class="active">⌂ Dashboard</a>
+    <a href="#donate">♡ Donate Food</a>
+    <a href="#history">◷ Donation History</a>
+    <a href="#impact">✧ My Impact</a>
+    <a href="#receipts">▤ Receipts</a>
+  </nav>
+  <a href="login.html" class="logout">↪ Log Out</a>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div class="welcome">
+      <h1>Donor Dashboard</h1>
+      <p>Make a difference through every donation.</p>
+    </div>
+    <div class="profile">💚 <strong>Donor Account</strong></div>
+  </header>
+
+  <section class="banner">
+    <h2>Welcome, Kind-hearted Donor! 🌿</h2>
+    <p>Your generosity can turn surplus food into hope. Support students by contributing safe, quality food through UPSInfaq.</p>
+  </section>
+
+  <h2 class="section-title">My Donation Overview</h2>
+  <section class="stats">
+    <div class="stat"><small>Total Donations</small><h2>—</h2><span>All submitted donations</span></div>
+    <div class="stat"><small>Items Donated</small><h2>—</h2><span>Total food quantities</span></div>
+    <div class="stat"><small>Pending Review</small><h2>—</h2><span>Awaiting verification</span></div>
+    <div class="stat"><small>Completed Donations</small><h2>—</h2><span>Successfully distributed</span></div>
+  </section>
+
+  <h2 class="section-title" id="donate">Choose Your Donation Category</h2>
+  <section class="categories">
+    <article class="category">
+      <div class="emoji">🌾</div>
+      <h3>Dry Food Donation</h3>
+      <p>Donate rice, cooking oil, sugar, flour, instant noodles, biscuits, canned food, UHT milk and other long-lasting food supplies.</p>
+      <a href="#dry-food">Explore Dry Food →</a>
+    </article>
+
+    <article class="category">
+      <div class="emoji">🍱</div>
+      <h3>Ready-to-Eat Food</h3>
+      <p>Share packed meals, sandwiches, bread, kuih, drinks and safe prepared food with students who need support.</p>
+      <a href="#ready-food">Explore Ready-to-Eat →</a>
+    </article>
+  </section>
+
+  <section class="panel" id="history">
+    <div class="panel-head">
+      <h3>Recent Donation History</h3>
+      <a href="#history">View All</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Reference</th><th>Category</th><th>Submission Date</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="4" class="empty">No donation records yet. Your donation history will appear here after the system is connected.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel" id="impact">
+    <div class="panel-head"><h3>My Contribution & Impact</h3></div>
+    <p style="font-size:12px;color:#839087">Your kindness helps create a more caring campus community.</p>
+    <div class="impact">
+      <div class="impact-item"><strong>—</strong><span>Students Supported</span></div>
+      <div class="impact-item"><strong>—</strong><span>Meals Contributed</span></div>
+      <div class="impact-item"><strong>—</strong><span>Food Items Shared</span></div>
+    </div>
+  </section>
+
+  <section class="panel" id="receipts">
+    <div class="panel-head"><h3>Donation Receipts & Certificates</h3></div>
+    <p style="font-size:12px;color:#839087;line-height:1.7">Verified donation receipts and appreciation certificates will be available here once your donations have been recorded and confirmed.</p>
+  </section>
+
+  <div class="footer">© 2026 UPSInfaq · One Donation. Countless Hopes.</div>
+</main>
+</body>
+</html>
