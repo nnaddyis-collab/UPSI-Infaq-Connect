@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Marketplace | UPSInfaq</title>
+<style>
+:root {
+  --green:#064e3b; --dark:#022c22; --gold:#d6ad50;
+  --cream:#f7f5ed; --muted:#718078; --border:#e5e9e4;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:Arial,sans-serif; background:var(--cream); color:#20352c; }
+header {
+  background:var(--dark); color:white; padding:18px 6%;
+  display:flex; justify-content:space-between; align-items:center; gap:15px; flex-wrap:wrap;
+}
+.logo { font-size:25px; font-weight:bold; }
+.logo span { color:var(--gold); }
+header a { color:white; text-decoration:none; font-size:13px; }
+.cart-button {
+  background:var(--gold); color:var(--dark); border:0; border-radius:9px;
+  padding:11px 17px; font-weight:bold; cursor:pointer;
+}
+.container { max-width:1150px; margin:30px auto; padding:0 18px; }
+.hero {
+  background:linear-gradient(120deg,#064e3b,#08745a);
+  color:white; padding:30px; border-radius:17px; margin-bottom:25px;
+}
+.hero h1 { font-size:27px; margin-bottom:10px; }
+.hero p { color:#d5e9df; line-height:1.6; }
+.category-tabs { display:flex; gap:10px; flex-wrap:wrap; margin:22px 0; }
+.tab {
+  border:1px solid var(--green); color:var(--green); background:white;
+  padding:10px 17px; border-radius:30px; cursor:pointer;
+}
+.tab.active { background:var(--green); color:white; }
+.section-heading { color:var(--green); margin:25px 0 15px; font-size:20px; }
+.products {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;
+}
+.product {
+  background:white; border:1px solid var(--border); border-radius:14px; overflow:hidden;
+}
+.product-image {
+  height:135px; background:#e7efe8; display:flex; align-items:center;
+  justify-content:center; font-size:57px;
+}
+.product-info { padding:16px; }
+.product-info h3 { color:var(--green); margin-bottom:7px; }
+.product-info p { font-size:12px; color:var(--muted); line-height:1.5; }
+.price { font-size:17px; font-weight:bold; margin:12px 0; color:var(--green); }
+.quantity { display:flex; align-items:center; gap:12px; margin:12px 0; }
+.quantity button {
+  width:30px; height:30px; border:1px solid var(--border);
+  background:white; border-radius:7px; cursor:pointer; font-size:18px;
+}
+.quantity span { font-weight:bold; min-width:15px; text-align:center; }
+.add-button {
+  width:100%; background:var(--green); color:white; border:0;
+  padding:11px; border-radius:8px; cursor:pointer; font-weight:bold;
+}
+.add-button:hover { background:#08745a; }
+.cart-panel {
+  background:white; border:1px solid var(--border); border-radius:14px;
+  padding:20px; margin-top:28px;
+}
+.cart-row {
+  display:flex; justify-content:space-between; align-items:center;
+  gap:10px; padding:13px 0; border-bottom:1px solid var(--border);
+  font-size:13px;
+}
+.cart-row button {
+  border:0; color:#b42318; background:none; cursor:pointer;
+}
+.cart-total { font-size:17px; font-weight:bold; color:var(--green); margin-top:17px; }
+.checkout {
+  background:var(--gold); color:var(--dark); border:0; border-radius:9px;
+  padding:13px 18px; font-weight:bold; cursor:pointer; margin-top:15px; width:100%;
+}
+.empty { color:var(--muted); font-size:13px; padding:15px 0; }
+.notice {
+  background:#fff8e7; border-left:4px solid var(--gold); border-radius:8px;
+  padding:15px; margin-top:20px; font-size:13px; line-height:1.6;
+}
+footer { text-align:center; color:var(--muted); padding:30px 15px; font-size:12px; }
+@media(max-width:550px) {
+  .hero h1 { font-size:22px; }
+  header { padding:17px 5%; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">UPS<span>Infaq</span></div>
+  <div>
+    <a href="donor-dashboard.html">← Donor Dashboard</a>
+    &nbsp;&nbsp;
+    <button class="cart-button" onclick="showCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Donation Marketplace 🛒</h1>
+    <p>Choose food items to support UPSI students in need.
+    Every contribution helps create a more caring campus.</p>
+  </section>
+
+  <h2 class="section-heading">Choose Food Category</h2>
+  <div class="category-tabs">
+    <button class="tab active" onclick="filterProducts('all',this)">All Items</button>
+    <button class="tab" onclick="filterProducts('dry',this)">🥫 Dry Food</button>
+    <button class="tab" onclick="filterProducts('ready',this)">🍱 Ready-to-Eat</button>
+  </div>
+
+  <h2 class="section-heading">Available Food Items</h2>
+  <section class="products" id="products"></section>
+
+  <section class="cart-panel" id="cart">
+    <h2 class="section-heading" style="margin-top:0">🛒 Your Donation Cart</h2>
+    <div id="cart-items"><p class="empty">Your cart is empty. Choose some food items above!</p></div>
+    <div class="cart-total" id="cart-total">Total items: 0</div>
+    <button class="checkout" onclick="proceedDonation()">Proceed to Donation →</button>
+  </section>
+
+  <div class="notice">
+    <strong>Food Safety Reminder</strong><br>
+    Please ensure donated food is safe for consumption. Dry food must
+    have a valid expiry date. Prepared food must include preparation
+    time, ingredients and allergen information. Final verification
+    is required before donated stock is added to inventory.
+  </div>
+</main>
+
+<footer>© 2026 UPSInfaq | One Donation. Countless Hopes.</footer>
+
+<script>
+const products = [
+  {id:1,name:"Rice (5kg)",category:"dry",icon:"🍚",price:18,desc:"A staple food item for student meals."},
+  {id:2,name:"Cooking Oil (1kg)",category:"dry",icon:"🫗",price:8,desc:"Cooking essential for daily meals."},
+  {id:3,name:"Sugar (1kg)",category:"dry",icon:"🧂",price:4,desc:"Basic kitchen pantry supply."},
+  {id:4,name:"Instant Noodles",category:"dry",icon:"🍜",price:5,desc:"Convenient packaged food."},
+  {id:5,name:"Biscuits",category:"dry",icon:"🍪",price:6,desc:"Packaged snacks for students."},
+  {id:6,name:"UHT Milk",category:"dry",icon:"🥛",price:7,desc:"Shelf-stable milk cartons."},
+  {id:7,name:"Packed Rice Meal",category:"ready",icon:"🍱",price:8,desc:"A freshly prepared meal."},
+  {id:8,name:"Sandwich",category:"ready",icon:"🥪",price:5,desc:"Prepared sandwich for distribution."},
+  {id:9,name:"Bread",category:"ready",icon:"🍞",price:4,desc:"Fresh bread for students."},
+  {id:10,name:"Kuih",category:"ready",icon:"🍡",price:5,desc:"Local traditional snacks."},
+  {id:11,name:"Fruit Pack",category:"ready",icon:"🍎",price:6,desc:"Fresh fruit portion."},
+  {id:12,name:"Drinking Water",category:"ready",icon:"💧",price:2,desc:"Bottled drinking water."}
+];
+
+let quantities = {};
+let cart = {};
+let currentFilter = "all";
+
+function renderProducts() {
+  const area = document.getElementById("products");
+  area.innerHTML = "";
+  products.filter(p => currentFilter === "all" || p.category === currentFilter)
+  .forEach(p => {
+    const qty = quantities[p.id] || 1;
+    area.innerHTML += `
+      <article class="product">
+        <div class="product-image">${p.icon}</div>
+        <div class="product-info">
+          <h3>${p.name}</h3>
+          <p>${p.desc}</p>
+          <div class="price">RM ${p.price.toFixed(2)}</div>
+          <div class="quantity">
+            <button onclick="changeQty(${p.id},-1)">−</button>
+            <span id="qty-${p.id}">${qty}</span>
+            <button onclick="changeQty(${p.id},1)">+</button>
+          </div>
+          <button class="add-button" onclick="addToCart(${p.id})">Add to Cart</button>
+        </div>
+      </article>`;
+  });
+}
+
+function changeQty(id,change) {
+  quantities[id] = Math.max(1,Math.min(99,(quantities[id] || 1)+change));
+  document.getElementById("qty-"+id).textContent = quantities[id];
+}
+
+function addToCart(id) {
+  cart[id] = (cart[id] || 0) + (quantities[id] || 1);
+  renderCart();
+  alert("Item added to your donation cart!");
+}
+
+function removeItem(id) {
+  delete cart[id];
+  renderCart();
+}
+
+function updateCartQty(id,change) {
+  cart[id] = (cart[id] || 0) + change;
+  if(cart[id] <= 0) delete cart[id];
+  renderCart();
+}
+
+function renderCart() {
+  const area = document.getElementById("cart-items");
+  const ids = Object.keys(cart);
+  let count = 0, total = 0;
+  if(ids.length === 0) {
+    area.innerHTML = '<p class="empty">Your cart is empty. Choose some food items above!</p>';
+  } else {
+    area.innerHTML = "";
+    ids.forEach(id => {
+      const p = products.find(x => x.id === Number(id));
+      const qty = cart[id];
+      count += qty;
+      total += qty * p.price;
+      area.innerHTML += `
+        <div class="cart-row">
+          <div><strong>${p.icon} ${p.name}</strong><br>
+          RM ${p.price.toFixed(2)} × ${qty}</div>
+          <div>
+            <button onclick="updateCartQty(${id},-1)">−</button>
+            &nbsp;${qty}&nbsp;
+            <button onclick="updateCartQty(${id},1)">+</button>
+            &nbsp;<button onclick="removeItem(${id})">Remove</button>
+          </div>
+        </div>`;
+    });
+  }
+  document.getElementById("cart-count").textContent = count;
+  document.getElementById("cart-total").textContent =
+    "Total items: "+count+" | Estimated value: RM "+total.toFixed(2);
+}
+
+function filterProducts(category,button) {
+  currentFilter = category;
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  button.classList.add("active");
+  renderProducts();
+}
+
+function showCart() {
+  document.getElementById("cart").scrollIntoView({behavior:"smooth"});
+}
+
+function proceedDonation() {
+  if(Object.keys(cart).length === 0) {
+    alert("Your donation cart is empty. Please add food items first.");
+    return;
+  }
+  alert("Your cart is ready! Donation submission and food details will be connected to the UPSInfaq database in the next development stage.");
+}
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
