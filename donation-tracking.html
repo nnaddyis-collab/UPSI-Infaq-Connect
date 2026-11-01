@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Tracking | UPSInfaq</title>
+<style>
+:root {
+  --green:#064e3b; --dark:#022c22; --gold:#d6ad50;
+  --cream:#f7f5ed; --muted:#718078; --border:#e5e9e4;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:Arial,sans-serif; background:var(--cream); color:#20352c; }
+header {
+  background:var(--dark); color:white; padding:19px 6%;
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+}
+.logo { font-size:25px; font-weight:bold; }
+.logo span { color:var(--gold); }
+header a { color:white; text-decoration:none; font-size:13px; }
+.container { max-width:950px; margin:35px auto; padding:0 18px; }
+.hero {
+  background:linear-gradient(120deg,#064e3b,#08745a);
+  color:white; padding:28px; border-radius:16px; margin-bottom:24px;
+}
+.hero h1 { font-size:26px; margin-bottom:9px; }
+.hero p { color:#d5e9df; line-height:1.6; font-size:14px; }
+.panel {
+  background:white; border:1px solid var(--border);
+  border-radius:14px; padding:22px; margin-bottom:20px;
+}
+.panel h2 { color:var(--green); font-size:19px; margin-bottom:18px; }
+.search-row { display:flex; gap:10px; flex-wrap:wrap; }
+input {
+  flex:1; min-width:180px; padding:12px; border:1px solid var(--border);
+  border-radius:8px; font-size:14px;
+}
+button {
+  background:var(--green); color:white; border:0;
+  padding:12px 18px; border-radius:8px; font-weight:bold; cursor:pointer;
+}
+.summary {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px; margin-bottom:20px;
+}
+.summary-card {
+  background:white; border:1px solid var(--border);
+  padding:17px; border-radius:12px;
+}
+.summary-card small { color:var(--muted); }
+.summary-card strong { display:block; font-size:22px; color:var(--green); margin-top:9px; }
+.status {
+  display:inline-block; padding:7px 12px; border-radius:20px;
+  background:#fff2d7; color:#92650a; font-size:12px; font-weight:bold;
+}
+.status.approved { background:#e4f1ff; color:#225a9b; }
+.status.collected { background:#f0e8ff; color:#6941a5; }
+.status.received { background:#e0f4e9; color:#187044; }
+.status.distributed { background:#d9f3ef; color:#08776b; }
+.timeline { position:relative; margin:20px 0 10px 8px; }
+.step {
+  position:relative; padding:0 0 25px 38px;
+  border-left:2px solid #dfe7df; margin-left:10px;
+}
+.step:last-child { border-left:2px solid transparent; padding-bottom:0; }
+.dot {
+  position:absolute; left:-10px; top:0; width:18px; height:18px;
+  border-radius:50%; background:#dfe7df; border:3px solid white;
+  box-shadow:0 0 0 1px #dfe7df;
+}
+.step.done .dot { background:var(--green); box-shadow:0 0 0 1px var(--green); }
+.step h3 { font-size:14px; color:var(--green); margin-bottom:5px; }
+.step p { font-size:12px; color:var(--muted); line-height:1.5; }
+table { width:100%; border-collapse:collapse; min-width:540px; }
+th,td { padding:13px 10px; border-bottom:1px solid var(--border); text-align:left; font-size:13px; }
+th { color:var(--muted); }
+.table-wrap { overflow-x:auto; }
+.notice {
+  background:#fff8e7; border-left:4px solid var(--gold);
+  padding:15px; border-radius:8px; font-size:13px; line-height:1.6;
+}
+.empty { color:var(--muted); font-size:13px; padding:12px 0; }
+footer { text-align:center; color:var(--muted); padding:28px; font-size:12px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">UPS<span>Infaq</span></div>
+  <a href="donor-dashboard.html">← Donor Dashboard</a>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Donation Tracking 📦</h1>
+    <p>Follow your donation journey from submission to distribution.
+    Thank you for helping UPSI students in need!</p>
+  </section>
+
+  <section class="panel">
+    <h2>Find Your Donation</h2>
+    <div class="search-row">
+      <input type="text" id="trackingInput" placeholder="Enter donation reference ID">
+      <button onclick="searchDonation()">Track Donation</button>
+    </div>
+    <p class="empty">Demo reference ID: UPSI-2026-001</p>
+  </section>
+
+  <section id="result" class="hidden">
+    <div class="summary">
+      <div class="summary-card">
+        <small>Reference ID</small>
+        <strong id="ref">—</strong>
+      </div>
+      <div class="summary-card">
+        <small>Donation Status</small>
+        <strong><span id="status" class="status">Pending</span></strong>
+      </div>
+      <div class="summary-card">
+        <small>Food Items</small>
+        <strong>3 items</strong>
+      </div>
+    </div>
+
+    <section class="panel">
+      <h2>Donation Journey</h2>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Donation Summary</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Food Item</th><th>Quantity</th><th>Category</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Rice (5kg)</td><td>2 Packs</td><td>Dry Food</td></tr>
+            <tr><td>UHT Milk</td><td>1 Carton</td><td>Dry Food</td></tr>
+            <tr><td>Biscuits</td><td>3 Packs</td><td>Dry Food</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+
+  <div id="notFound" class="notice">
+    <strong>📌 Tracking Information</strong><br>
+    Enter the demo reference ID above to view an example donation journey.
+    Real tracking records will appear after the database is connected.
+  </div>
+
+  <div class="notice">
+    <strong>Food Inventory Reminder</strong><br>
+    Donated food is only added to official inventory after the Organizer
+    verifies that the donation has been received. Submission alone does
+    not increase available stock.
+  </div>
+</main>
+
+<footer>© 2026 UPSInfaq | One Donation. Countless Hopes.</footer>
+
+<script>
+const stages = [
+  {name:"Pending",description:"Donation submitted and waiting for Organizer review."},
+  {name:"Approved",description:"Organizer has approved the donation."},
+  {name:"Collected",description:"Food donation has been collected."},
+  {name:"Received",description:"Organizer has confirmed receipt and checked the food."},
+  {name:"Distributed",description:"Food has been distributed to students in need."}
+];
+
+function searchDonation() {
+  const input = document.getElementById("trackingInput").value.trim();
+  const result = document.getElementById("result");
+  const notFound = document.getElementById("notFound");
+
+  if(input.toUpperCase() !== "UPSI-2026-001") {
+    result.classList.add("hidden");
+    notFound.innerHTML = "<strong>Reference not found.</strong><br>Please enter the demo reference ID UPSI-2026-001.";
+    return;
+  }
+
+  result.classList.remove("hidden");
+  notFound.classList.add("hidden");
+
+  document.getElementById("ref").textContent = "UPSI-2026-001";
+
+  // Demonstration status only. Real status will come from the database.
+  const currentStage = 2;
+  const status = document.getElementById("status");
+  status.textContent = stages[currentStage].name;
+  status.className = "status collected";
+
+  document.getElementById("timeline").innerHTML = stages.map((stage,index) => `
+    <div class="step ${index <= currentStage ? "done" : ""}">
+      <span class="dot"></span>
+      <h3>${index+1}. ${stage.name}</h3>
+      <p>${stage.description}</p>
+    </div>
+  `).join("");
+}
+</script>
+
+</body>
+</html>
