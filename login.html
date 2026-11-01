@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#064e3b">
+  <title>Login | UPSInfaq</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #022c22, #065f46, #064e3b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: #18352b;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 440px;
+      background: #fffdf5;
+      border-radius: 24px;
+      padding: 38px 32px;
+      box-shadow: 0 24px 65px rgba(0,0,0,.28);
+      border: 1px solid rgba(230,190,100,.5);
+    }
+
+    .logo {
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 15px;
+      border-radius: 20px;
+      background: #064e3b;
+      color: #f5d58a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .brand {
+      text-align: center;
+      color: #064e3b;
+      font-size: 29px;
+      font-weight: 800;
+    }
+
+    .tagline {
+      text-align: center;
+      color: #9a7938;
+      font-size: 12px;
+      margin-top: 6px;
+      margin-bottom: 28px;
+      letter-spacing: .5px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #173b2e;
+    }
+
+    .description {
+      text-align: center;
+      color: #78847c;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin: 17px 0 8px;
+      color: #315345;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid #d9e3da;
+      border-radius: 11px;
+      background: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: .2s;
+    }
+
+    input:focus {
+      border-color: #0b8060;
+      box-shadow: 0 0 0 3px rgba(11,128,96,.1);
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-wrap input {
+      padding-right: 65px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: none;
+      color: #087653;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .forgot {
+      display: block;
+      text-align: right;
+      margin-top: 12px;
+      color: #087653;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 25px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #087653, #064e3b);
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(6,78,59,.2);
+    }
+
+    .register {
+      text-align: center;
+      margin-top: 23px;
+      font-size: 13px;
+      color: #718078;
+    }
+
+    .register a {
+      color: #087653;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .notice {
+      margin-top: 22px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #f5f0df;
+      color: #80652e;
+      font-size: 11px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 22px;
+      color: #718078;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    @media(max-width: 480px) {
+      .login-container {
+        padding: 30px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="login-container">
+
+    <div class="logo">UI</div>
+
+    <div class="brand">UPSInfaq</div>
+    <div class="tagline">ONE DONATION. COUNTLESS HOPES.</div>
+
+    <h2>Welcome Back!</h2>
+    <p class="description">Log masuk ke akaun UPSInfaq anda.</p>
+
+    <form id="loginForm">
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="contoh@email.com"
+        autocomplete="email"
+        required
+      >
+
+      <label for="password">Password</label>
+      <div class="password-wrap">
+        <input
+          type="password"
+          id="password"
+          placeholder="Masukkan kata laluan"
+          autocomplete="current-password"
+          required
+        >
+        <button
+          type="button"
+          class="toggle-password"
+          onclick="togglePassword()"
+        >SHOW</button>
+      </div>
+
+      <a href="#" class="forgot" id="forgotLink">
+        Forgot Password?
+      </a>
+
+      <button type="submit" class="login-button">
+        LOG IN →
+      </button>
+    </form>
+
+    <p class="register">
+      Don't have an account?
+      <a href="register.html">Register Now</a>
+    </p>
+
+    <div class="notice">
+      Your account will be directed to its authorised dashboard
+      after secure login is connected.
+    </div>
+
+    <a href="index.html" class="back">← Back to Homepage</a>
+
+  </main>
+
+  <script>
+    function togglePassword() {
+      const password = document.getElementById("password");
+      const button = document.querySelector(".toggle-password");
+
+      if (password.type === "password") {
+        password.type = "text";
+        button.textContent = "HIDE";
+      } else {
+        password.type = "password";
+        button.textContent = "SHOW";
+      }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      alert("Login belum diaktifkan. Sambungan keselamatan akaun akan dibuat selepas reka bentuk halaman selesai.");
+    });
+
+    document.getElementById("forgotLink").addEventListener("click", function(event) {
+      event.preventDefault();
+      alert("Fungsi reset password akan diaktifkan selepas sistem akaun disambungkan.");
+    });
+  </script>
+</body>
+</html>
