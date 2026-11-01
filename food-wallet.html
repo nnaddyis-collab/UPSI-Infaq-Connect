@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>e-Food Wallet | UPSInfaq</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #071b16;
+      color: #f5f1df;
+    }
+    header {
+      padding: 22px 7%;
+      background: #0d3025;
+      border-bottom: 1px solid #b99a48;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand { color: #e2c16b; font-size: 25px; font-weight: bold; }
+    header a { color: #f5f1df; text-decoration: none; }
+    main { max-width: 1050px; margin: 35px auto; padding: 0 18px; }
+    h1 { color: #e2c16b; margin-bottom: 8px; }
+    .muted { color: #b9c9c0; line-height: 1.6; }
+    .wallet {
+      background: linear-gradient(135deg, #14533d, #0b3025);
+      border: 1px solid #c5a653;
+      border-radius: 18px;
+      padding: 28px;
+      margin: 25px 0;
+    }
+    .wallet-label { color: #d8dfd6; }
+    .balance { font-size: 42px; font-weight: bold; color: #f1d47e; margin: 12px 0; }
+    .wallet-id { color: #d8dfd6; font-size: 14px; }
+    .notice {
+      background: #263b2d;
+      border-left: 4px solid #e2c16b;
+      padding: 14px;
+      border-radius: 8px;
+      color: #f5e9c2;
+      line-height: 1.5;
+      margin: 20px 0;
+    }
+    .section {
+      background: #102820;
+      border: 1px solid #244b3c;
+      border-radius: 14px;
+      padding: 22px;
+      margin: 20px 0;
+    }
+    h2 { color: #e2c16b; font-size: 20px; }
+    .transaction {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 16px 0;
+      border-bottom: 1px solid #29483b;
+      flex-wrap: wrap;
+    }
+    .transaction:last-child { border-bottom: none; }
+    .transaction small { display: block; color: #aebfb4; margin-top: 6px; }
+    .status {
+      color: #e2c16b;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+    .amount { font-weight: bold; color: #9bd5a8; }
+    .empty { color: #aebfb4; text-align: center; padding: 20px; }
+    .back {
+      display: inline-block;
+      background: #c5a653;
+      color: #102820;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    footer { text-align: center; padding: 25px; color: #91a69a; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">UPSInfaq</div>
+  <a href="student-dashboard.html">← Student Dashboard</a>
+</header>
+
+<main>
+  <h1>e-Food Wallet</h1>
+  <p class="muted">Dompet makanan digital anda untuk mengurus bantuan makanan melalui UPSInfaq.</p>
+
+  <div class="wallet">
+    <div class="wallet-label">Baki Bantuan Makanan</div>
+    <div class="balance">0 <span style="font-size:20px;">Mata</span></div>
+    <div class="wallet-id">Wallet ID: UPSI-WALLET-0001</div>
+  </div>
+
+  <div class="notice">
+    <strong>Makluman:</strong> Ini ialah paparan demonstrasi. Mata dan rekod di halaman ini bukan wang sebenar atau baki bantuan sebenar. Data akan disambungkan kepada sistem pangkalan data kemudian.
+  </div>
+
+  <div class="section">
+    <h2>Maklumat Wallet</h2>
+    <p>Status Wallet: <strong style="color:#e2c16b;">Belum Diaktifkan</strong></p>
+    <p>Nama Pemilik: Pelajar UPSI</p>
+    <p>Kaedah Penebusan: QR Code (akan datang)</p>
+  </div>
+
+  <div class="section">
+    <h2>Sejarah Transaksi</h2>
+
+    <div class="transaction">
+      <div>
+        <strong>Wallet dicipta</strong>
+        <small>Rekod demonstrasi UPSInfaq</small>
+        <div class="status">● Belum diaktifkan</div>
+      </div>
+      <div class="amount">0 Mata</div>
+    </div>
+
+    <div class="empty">
+      Belum ada transaksi bantuan makanan.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Bagaimana Wallet Berfungsi?</h2>
+    <p class="muted">1. Permohonan bantuan makanan anda diluluskan oleh pihak penganjur.</p>
+    <p class="muted">2. Pihak penganjur menyediakan kelayakan bantuan.</p>
+    <p class="muted">3. Anda menunjukkan QR Code kepada kedai makanan yang mengambil bahagian.</p>
+    <p class="muted">4. Penebusan direkodkan dalam sejarah transaksi wallet.</p>
+  </div>
+
+  <a class="back" href="student-dashboard.html">Kembali ke Dashboard</a>
+</main>
+
+<footer>
+  © 2026 UPSInfaq — One Donation. Countless Hopes.
+</footer>
+
+</body>
+</html>
