@@ -156,45 +156,107 @@ footer { text-align:center; padding:28px; color:var(--muted); font-size:12px; }
 
 <footer>© 2026 UPSInfaq | One Donation. Countless Hopes.</footer>
 
-<script>
-const stages = [
-  {name:"Application Submitted",description:"Your application has been received."},
-  {name:"Under Review",description:"Organizer is reviewing your application details."},
-  {name:"Decision Made",description:"The application decision has been recorded."}
-];
 
-function checkStatus() {
-  const value = document.getElementById("reference").value.trim().toUpperCase();
+<script>
+async function checkStatus() {
   const result = document.getElementById("applicationResult");
   const message = document.getElementById("message");
+  const reference = document.getElementById("reference");
 
-  if(value !== "UPSI-APP-001") {
-    result.classList.add("hidden");
-    message.classList.remove("hidden");
-    message.innerHTML = "<strong>Reference not found.</strong><br>Please enter the demo reference ID UPSI-APP-001.";
+  message.classList.remove("hidden");
+  message.textContent = "Loading your application...";
+
+  const { data: authData, error: authError } =
+    await supabaseClient.auth.getUser();
+
+  if (authError || !authData.user) {
+    message.textContent = "Please login to view your application status.";
+    window.location.href = "login.html";
     return;
   }
 
-  result.classList.remove("hidden");
-  message.classList.add("hidden");
+  const user = authData.user;
 
-  // Example only: demo application is currently under review.
-  const currentStage = 1;
+  const { data: profile, error: profileError } = await supabaseClient
+    .from("profiles")
+    .select("full_name, role")
+    .eq("id", user.id)
+    .single();
 
-  document.getElementById("statusBadge").textContent = "Under Review";
-  document.getElementById("statusBadge").className = "status review";
+  if (profileError || profile.role !== "student") {
+    result.classList.add("hidden");
+    message.textContent = "Only Student accounts can view this page.";
+    return;
+  }
+
+  const { data: applications, error } = await supabaseClient
+    .from("food_applications")
+    .select("*")
+    .eq("student_id", user.id)
+    .order("submitted_at", { ascending: false });
+
+  if (error) {
+    result.classList.add("hidden");
+    message.textContent = "Unable to load applications: " + error.message;
+    return;
+  }
+
+  if (!applications || applications.length === 0) {
+    result.classList.add("hidden");
+    message.textContent = "You have not submitted any food assistance applications yet.";
+    return;
+  }
+
+  const app = applications[0];
+  const status = app.status;
+
+  reference.value = app.id;
+
+  document.querySelector(".detail strong").textContent = app.id;
+  document.querySelectorAll(".detail strong")[1].textContent =
+    profile.full_name;
+  document.querySelectorAll(".detail strong")[2].textContent =
+    new Date(app.submitted_at).toLocaleDateString();
+
+  const badge = document.getElementById("statusBadge");
+  badge.textContent = status.replace("_", " ").toUpperCase();
+  badge.className = "status";
+
+  if (status === "approved") badge.classList.add("approved");
+  else if (status === "rejected") badge.classList.add("rejected");
+  else if (status === "under_review") badge.classList.add("review");
+
+  const stages = [
+    {name:"Application Submitted", description:"Your application has been received."},
+    {name:"Under Review", description:"Organizer is reviewing your application."},
+    {name:"Decision Made", description:"The application decision has been recorded."}
+  ];
+
+  let currentStage = 0;
+  if (status === "under_review") currentStage = 1;
+  if (status === "approved" || status === "rejected") currentStage = 2;
+
+  document.getElementById("timeline").innerHTML =
+    stages.map((stage, index) => `
+      <div class="step ${index <= currentStage ? "done" : ""}">
+        <span class="dot"></span>
+        <h3>${index + 1}. ${stage.name}</h3>
+        <p>${stage.description}</p>
+      </div>
+    `).join("");
 
   document.getElementById("remarks").textContent =
-    "Your application is being reviewed by the Organizer. This is a demonstration record.";
+    status === "approved" ? "Your application has been approved." :
+    status === "rejected" ? "Your application has been rejected. Please contact the Organizer team." :
+    status === "under_review" ? "Your application is currently under review." :
+    "Your application has been received and is pending review.";
 
-  document.getElementById("timeline").innerHTML = stages.map((stage,index) => `
-    <div class="step ${index <= currentStage ? "done" : ""}">
-      <span class="dot"></span>
-      <h3>${index+1}. ${stage.name}</h3>
-      <p>${stage.description}</p>
-    </div>
-  `).join("");
+  result.classList.remove("hidden");
+  message.classList.add("hidden");
 }
+
+document.addEventListener("DOMContentLoaded", checkStatus);
 </script>
+
 </body>
 </html>
