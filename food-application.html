@@ -179,21 +179,77 @@ footer { text-align:center; padding:28px; color:var(--muted); font-size:12px; }
 <footer>© 2026 UPSInfaq | One Donation. Countless Hopes.</footer>
 
 <script>
-document.getElementById("applicationForm").addEventListener("submit",function(event) {
+
+document.getElementById("applicationForm").addEventListener("submit", async function(event) {
   event.preventDefault();
 
-  const selectedFood = document.querySelectorAll('input[name="food"]:checked');
+  const selectedFood = [...document.querySelectorAll('input[name="food"]:checked')]
+    .map(item => item.value);
 
-  if(selectedFood.length === 0) {
+  if (selectedFood.length === 0) {
     alert("Please select at least one preferred food assistance option.");
     return;
   }
 
-  if(!this.reportValidity()) return;
+  if (!this.reportValidity()) return;
 
-  document.getElementById("success").style.display = "block";
-  document.getElementById("success").scrollIntoView({behavior:"smooth"});
+  const { data: authData, error: authError } =
+    await supabaseClient.auth.getUser();
+
+  if (authError || !authData.user) {
+    alert("Sila login dahulu sebelum menghantar permohonan.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const user = authData.user;
+
+  const { data: profile, error: profileError } = await supabaseClient
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .single();
+
+  if (profileError || profile.role !== "student") {
+    alert("Hanya akaun Student boleh menghantar permohonan.");
+    return;
+  }
+
+  const submitButton = this.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  submitButton.textContent = "Submitting...";
+
+  const { error } = await supabaseClient
+    .from("food_applications")
+    .insert({
+      student_id: user.id,
+      reason: document.getElementById("reason").value +
+        " — " + document.getElementById("details").value,
+      food_preference: selectedFood.join(", "),
+      support_frequency: document.getElementById("frequency").value,
+      dietary_restrictions:
+        document.getElementById("allergy").value +
+        " | Additional notes: " +
+        document.getElementById("support").value
+    });
+
+  submitButton.disabled = false;
+  submitButton.textContent = "Submit Application →";
+
+  if (error) {
+    alert("Permohonan gagal dihantar: " + error.message);
+    return;
+  }
+
+  const success = document.getElementById("success");
+  success.innerHTML =
+    "<strong>Application Submitted Successfully!</strong><br>" +
+    "Permohonan anda telah disimpan. Status semasa: Pending.";
+  success.style.display = "block";
+  success.scrollIntoView({ behavior: "smooth" });
+  this.reset();
 });
+
 </script>
 
 <div style="max-width:850px;margin:25px auto;padding:20px;text-align:center;font-family:Arial,sans-serif;">
