@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#092d24">
-  <title>UPSI Infaq Connect | Share Hope, Nourish Lives</title>
-  <meta name="description" content="UPSI Infaq Connect - A student food assistance and donation platform built on kindness and community.">
+  <meta name="description" content="UPSInfaq - Share food, share love, share hope. A student food assistance platform.">
+  <title>UPSInfaq | One Donation, Countless Hopes</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,18 +51,37 @@
     .brand { display: flex; align-items: center; gap: 12px; color: white; }
 
     .brand-icon {
-      width: 45px; height: 45px;
-      display: grid; place-items: center;
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
       border: 1px solid var(--gold);
       border-radius: 14px;
       color: var(--gold);
       font-size: 24px;
     }
 
-    .brand-name { font-weight: 800; font-size: 17px; letter-spacing: .5px; }
-    .brand-sub { color: var(--gold); font-size: 10px; letter-spacing: 2px; margin-top: 3px; }
+    .brand-name {
+      font-weight: 800;
+      font-size: 21px;
+      letter-spacing: .5px;
+    }
 
-    .nav-links { display: flex; align-items: center; gap: 30px; color: #e1e9e2; font-size: 13px; }
+    .brand-sub {
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-top: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      color: #e1e9e2;
+      font-size: 13px;
+    }
+
     .nav-links a:hover { color: var(--gold); }
 
     .nav-actions { display: flex; align-items: center; gap: 12px; }
@@ -110,7 +129,12 @@
       margin-bottom: 25px;
     }
 
-    .eyebrow::before { content: ''; width: 35px; height: 1px; background: var(--gold); }
+    .eyebrow::before {
+      content: '';
+      width: 35px;
+      height: 1px;
+      background: var(--gold);
+    }
 
     h1 {
       font-family: 'Playfair Display', serif;
@@ -131,7 +155,12 @@
 
     .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
 
-    .hero-note { margin-top: 38px; color: #bdcfc2; font-size: 12px; letter-spacing: 1px; }
+    .hero-note {
+      margin-top: 38px;
+      color: #bdcfc2;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
 
     .stats {
       background: var(--green2);
@@ -142,24 +171,50 @@
       gap: 20px;
     }
 
-    .stat { text-align: center; border-right: 1px solid rgba(255,255,255,.15); }
+    .stat {
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+
     .stat:last-child { border: 0; }
     .stat h2 { font-size: 32px; color: var(--gold); margin-bottom: 5px; }
     .stat p { font-size: 12px; color: #d0ddd4; }
 
     section { padding: 90px 8%; }
 
-    .section-heading { text-align: center; max-width: 650px; margin: 0 auto 45px; }
-    .section-label { color: #a27c36; font-size: 11px; font-weight: 800; letter-spacing: 3px; }
+    .section-heading {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 45px;
+    }
+
+    .section-label {
+      color: #a27c36;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+
     .section-heading h2 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(30px,4vw,43px);
       color: var(--green);
       margin: 13px 0;
     }
-    .section-heading p { color: #758078; font-size: 14px; line-height: 1.8; }
 
-    .categories { display: grid; grid-template-columns: repeat(2,1fr); gap: 25px; max-width: 1050px; margin: auto; }
+    .section-heading p {
+      color: #758078;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 25px;
+      max-width: 1050px;
+      margin: auto;
+    }
 
     .category-card {
       background: white;
@@ -169,15 +224,40 @@
       transition: .3s;
     }
 
-    .category-card:hover { transform: translateY(-7px); box-shadow: 0 18px 40px rgba(15,48,34,.13); }
-    .category-image { height: 230px; width: 100%; object-fit: cover; display: block; }
+    .category-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 18px 40px rgba(15,48,34,.13);
+    }
+
+    .category-image {
+      height: 230px;
+      width: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .category-content { padding: 26px; }
     .category-content h3 { color: var(--green); font-size: 21px; margin-bottom: 10px; }
-    .category-content p { color: #7a857d; font-size: 13px; line-height: 1.8; margin-bottom: 18px; }
+
+    .category-content p {
+      color: #7a857d;
+      font-size: 13px;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
     .category-link { color: #a27c36; font-size: 13px; font-weight: 800; }
 
     .how-section { background: #eae8dc; }
-    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 25px; max-width: 1100px; margin: auto; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 25px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
     .step {
       background: white;
       padding: 30px;
@@ -185,9 +265,12 @@
       text-align: center;
       box-shadow: 0 5px 20px rgba(0,0,0,.03);
     }
+
     .step-number {
-      width: 53px; height: 53px;
-      display: grid; place-items: center;
+      width: 53px;
+      height: 53px;
+      display: grid;
+      place-items: center;
       margin: 0 auto 20px;
       background: var(--green);
       color: var(--gold);
@@ -195,8 +278,14 @@
       font-weight: 800;
       font-size: 20px;
     }
+
     .step h3 { color: var(--green); margin-bottom: 10px; font-size: 17px; }
-    .step p { color: #7a857d; font-size: 13px; line-height: 1.8; }
+
+    .step p {
+      color: #7a857d;
+      font-size: 13px;
+      line-height: 1.8;
+    }
 
     .campaign {
       background: var(--green);
@@ -208,18 +297,60 @@
       align-items: center;
       gap: 30px;
     }
-    .campaign h2 { font-family: 'Playfair Display',serif; font-size: clamp(28px,4vw,42px); margin: 12px 0; }
-    .campaign p { color: #c6d5ca; font-size: 14px; line-height: 1.8; max-width: 570px; }
+
+    .campaign h2 {
+      font-family: 'Playfair Display',serif;
+      font-size: clamp(28px,4vw,42px);
+      margin: 12px 0;
+    }
+
+    .campaign p {
+      color: #c6d5ca;
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 570px;
+    }
+
     .campaign .section-label { color: var(--gold); }
 
-    .footer { background: #061e18; color: white; padding: 55px 8% 25px; }
-    .footer-main { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 35px; }
-    .footer p { color: #aebfb4; font-size: 13px; line-height: 1.9; max-width: 400px; margin-top: 12px; }
-    .footer h4 { color: var(--gold); margin-bottom: 15px; }
-    .footer-links { display: grid; gap: 12px; font-size: 13px; color: #c4d0c8; }
-    .copyright { border-top: 1px solid rgba(255,255,255,.12); padding-top: 22px; color: #81958a; font-size: 11px; text-align: center; }
+    .footer {
+      background: #061e18;
+      color: white;
+      padding: 55px 8% 25px;
+    }
 
-    .mobile-menu { display: none; }
+    .footer-main {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding-bottom: 35px;
+    }
+
+    .footer p {
+      color: #aebfb4;
+      font-size: 13px;
+      line-height: 1.9;
+      max-width: 400px;
+      margin-top: 12px;
+    }
+
+    .footer h4 { color: var(--gold); margin-bottom: 15px; }
+
+    .footer-links {
+      display: grid;
+      gap: 12px;
+      font-size: 13px;
+      color: #c4d0c8;
+    }
+
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding-top: 22px;
+      color: #81958a;
+      font-size: 11px;
+      text-align: center;
+    }
 
     @media(max-width:850px) {
       .nav-links { display: none; }
@@ -230,7 +361,7 @@
 
     @media(max-width:600px) {
       .navbar { padding: 13px 5%; }
-      .brand-name { font-size: 14px; }
+      .brand-name { font-size: 18px; }
       .nav-actions .btn { padding: 10px 12px; font-size: 11px; }
       .hero { min-height: 560px; padding: 70px 7%; background-position: 60% center; }
       .hero-description { font-size: 13px; }
@@ -250,7 +381,7 @@
     <a href="#" class="brand">
       <div class="brand-icon">✦</div>
       <div>
-        <div class="brand-name">UPSI INFAQ CONNECT</div>
+        <div class="brand-name">UPSInfaq</div>
         <div class="brand-sub">SHARING KINDNESS</div>
       </div>
     </a>
@@ -273,16 +404,20 @@
     <section class="hero" id="about">
       <div class="hero-content">
         <div class="eyebrow">UPSI COMMUNITY INITIATIVE</div>
+
         <h1>One Donation.<br><span>Countless Hopes.</span></h1>
+
         <p class="hero-description">
           Connecting generous hearts with students in need.
           Together, we build a caring campus where no student
           has to face hunger alone.
         </p>
+
         <div class="hero-buttons">
           <a href="register.html" class="btn btn-gold">Start Donating ↗</a>
           <a href="#donations" class="btn btn-outline">Explore Donations</a>
         </div>
+
         <div class="hero-note">✦ &nbsp; SHARE FOOD. SHARE LOVE. SHARE HOPE.</div>
       </div>
     </section>
@@ -321,6 +456,7 @@
           <img class="category-image"
             src="https://images.unsplash.com/photo-1604719312566-8912e9c8a213?auto=format&fit=crop&w=1000&q=85"
             alt="Dry food groceries">
+
           <div class="category-content">
             <h3>Dry Food Donations</h3>
             <p>
@@ -335,6 +471,7 @@
           <img class="category-image"
             src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85"
             alt="Prepared meals">
+
           <div class="category-content">
             <h3>Ready-to-Eat Food</h3>
             <p>
@@ -350,7 +487,7 @@
     <section class="how-section" id="how">
       <div class="section-heading">
         <div class="section-label">SIMPLE & MEANINGFUL</div>
-        <h2>How UPSI Infaq Connect Works</h2>
+        <h2>How UPSInfaq Works</h2>
         <p>A simple process that brings donors and students together.</p>
       </div>
 
@@ -360,11 +497,13 @@
           <h3>Give a Contribution</h3>
           <p>Donors select food items, choose quantities and submit their donations.</p>
         </article>
+
         <article class="step">
           <div class="step-number">02</div>
           <h3>Manage & Distribute</h3>
           <p>Organisers coordinate donations, manage inventory and arrange food distribution.</p>
         </article>
+
         <article class="step">
           <div class="step-number">03</div>
           <h3>Make an Impact</h3>
@@ -383,6 +522,7 @@
             Join the UPSI community and become part of a meaningful change.
           </p>
         </div>
+
         <a href="register.html" class="btn btn-gold">Join Our Community ↗</a>
       </div>
     </section>
@@ -394,13 +534,14 @@
         <a href="#" class="brand">
           <div class="brand-icon">✦</div>
           <div>
-            <div class="brand-name">UPSI INFAQ CONNECT</div>
+            <div class="brand-name">UPSInfaq</div>
             <div class="brand-sub">SHARING KINDNESS</div>
           </div>
         </a>
+
         <p>
-          A student food assistance platform built on compassion,
-          generosity and the spirit of community at UPSI.
+          UPSInfaq is a student food assistance platform built on
+          compassion, generosity and the spirit of community at UPSI.
         </p>
       </div>
 
@@ -426,7 +567,7 @@
     </div>
 
     <div class="copyright">
-      © 2026 UPSI Infaq Connect. Made with ♡ for the UPSI community.
+      © 2026 UPSInfaq. Made with ♡ for the UPSI community.
     </div>
   </footer>
 
