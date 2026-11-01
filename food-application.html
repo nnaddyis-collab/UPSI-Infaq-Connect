@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Assistance Application | UPSInfaq</title>
+<style>
+:root {
+  --green:#064e3b; --dark:#022c22; --gold:#d6ad50;
+  --cream:#f7f5ed; --muted:#718078; --border:#e5e9e4;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:Arial,sans-serif; background:var(--cream); color:#20352c; }
+header {
+  background:var(--dark); color:white; padding:19px 6%;
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+}
+.logo { font-size:25px; font-weight:bold; }
+.logo span { color:var(--gold); }
+header a { color:white; text-decoration:none; font-size:13px; }
+.container { max-width:780px; margin:35px auto; padding:0 18px; }
+.hero {
+  background:linear-gradient(120deg,#064e3b,#08745a);
+  color:white; padding:28px; border-radius:16px; margin-bottom:24px;
+}
+.hero h1 { font-size:26px; margin-bottom:9px; }
+.hero p { color:#d5e9df; font-size:14px; line-height:1.6; }
+.panel {
+  background:white; border:1px solid var(--border);
+  border-radius:14px; padding:24px; margin-bottom:20px;
+}
+.panel h2 { color:var(--green); font-size:19px; margin-bottom:16px; }
+label { display:block; font-size:13px; font-weight:bold; margin:15px 0 7px; }
+input,select,textarea {
+  width:100%; padding:12px; border:1px solid #d8dfd8;
+  border-radius:8px; font-size:14px; font-family:inherit;
+}
+textarea { min-height:95px; resize:vertical; }
+.hint { font-size:12px; color:var(--muted); margin-top:6px; line-height:1.5; }
+.checks { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px; }
+.check-item { display:flex; align-items:center; gap:8px; font-size:13px; }
+.check-item input { width:auto; }
+.submit {
+  width:100%; background:var(--green); color:white; border:0;
+  padding:15px; border-radius:9px; font-weight:bold; font-size:15px;
+  cursor:pointer; margin-top:20px;
+}
+.notice {
+  background:#fff8e7; border-left:4px solid var(--gold);
+  padding:15px; border-radius:8px; font-size:13px; line-height:1.6;
+}
+.success {
+  display:none; background:#e2f5e9; color:#17633b;
+  padding:17px; border-radius:9px; margin-top:18px; line-height:1.6;
+}
+footer { text-align:center; padding:28px; color:var(--muted); font-size:12px; }
+@media(max-width:500px) { .checks { grid-template-columns:1fr; } .hero h1 { font-size:22px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">UPS<span>Infaq</span></div>
+  <a href="student-dashboard.html">← Student Dashboard</a>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Food Assistance Application 🍚</h1>
+    <p>Apply for food assistance through UPSInfaq.
+    Your information will be handled responsibly and reviewed
+    by the authorized Organizer team.</p>
+  </section>
+
+  <form id="applicationForm">
+
+    <section class="panel">
+      <h2>1. Student Information</h2>
+
+      <label for="name">Full Name *</label>
+      <input id="name" type="text" required placeholder="Enter your full name">
+
+      <label for="studentId">Student ID *</label>
+      <input id="studentId" type="text" required placeholder="Enter your UPSI student ID">
+
+      <label for="email">UPSI Email Address *</label>
+      <input id="email" type="email" required placeholder="Enter your email address">
+
+      <label for="phone">Phone Number *</label>
+      <input id="phone" type="tel" required placeholder="e.g. 0123456789">
+
+      <label for="faculty">Faculty *</label>
+      <input id="faculty" type="text" required placeholder="Enter your faculty">
+
+      <label for="programme">Programme / Course *</label>
+      <input id="programme" type="text" required placeholder="Enter your programme">
+
+      <label for="year">Year of Study *</label>
+      <select id="year" required>
+        <option value="">-- Select Year --</option>
+        <option>Year 1</option>
+        <option>Year 2</option>
+        <option>Year 3</option>
+        <option>Year 4</option>
+        <option>Postgraduate</option>
+      </select>
+    </section>
+
+    <section class="panel">
+      <h2>2. Assistance Information</h2>
+
+      <label for="reason">Reason for Requesting Assistance *</label>
+      <select id="reason" required>
+        <option value="">-- Select Reason --</option>
+        <option>Financial difficulties</option>
+        <option>Family financial situation</option>
+        <option>Emergency situation</option>
+        <option>Temporary food shortage</option>
+        <option>Other</option>
+      </select>
+
+      <label for="details">Explain Your Situation *</label>
+      <textarea id="details" required placeholder="Briefly explain why you need food assistance..."></textarea>
+
+      <label>Preferred Food Assistance *</label>
+      <div class="checks">
+        <label class="check-item"><input type="checkbox" name="food" value="Dry Food"> Dry Food</label>
+        <label class="check-item"><input type="checkbox" name="food" value="Ready-to-Eat"> Ready-to-Eat</label>
+        <label class="check-item"><input type="checkbox" name="food" value="Food Wallet"> e-Food Wallet</label>
+        <label class="check-item"><input type="checkbox" name="food" value="Any Available"> Any Available</label>
+      </div>
+
+      <label for="frequency">How Often Do You Need Assistance? *</label>
+      <select id="frequency" required>
+        <option value="">-- Select Frequency --</option>
+        <option>One-time assistance</option>
+        <option>Weekly</option>
+        <option>Monthly</option>
+        <option>Emergency assistance</option>
+      </select>
+    </section>
+
+    <section class="panel">
+      <h2>3. Additional Information</h2>
+
+      <label for="allergy">Food Allergies / Dietary Restrictions</label>
+      <textarea id="allergy" placeholder="e.g. Peanut allergy, vegetarian, halal requirements. Write None if not applicable."></textarea>
+
+      <label for="support">Additional Notes</label>
+      <textarea id="support" placeholder="Any additional information you would like the Organizer to know?"></textarea>
+
+      <div class="notice">
+        <strong>Privacy & Declaration</strong><br>
+        Your information is intended for assistance assessment by
+        authorized UPSInfaq personnel. Please provide accurate details.
+        Do not include passwords or sensitive banking information.
+      </div>
+
+      <label style="display:flex;align-items:flex-start;gap:10px;font-weight:normal;line-height:1.5">
+        <input id="declaration" type="checkbox" required style="width:auto;margin-top:3px">
+        I confirm that the information provided is accurate and I agree
+        to the use of my information for food assistance assessment. *
+      </label>
+
+      <button class="submit" type="submit">Submit Application →</button>
+
+      <div class="success" id="success">
+        <strong>Application Form Completed!</strong><br>
+        This is a demonstration only. Your application has not been
+        saved or sent to the Organizer yet. Database integration is
+        required before real applications can be submitted.
+      </div>
+    </section>
+
+  </form>
+</main>
+
+<footer>© 2026 UPSInfaq | One Donation. Countless Hopes.</footer>
+
+<script>
+document.getElementById("applicationForm").addEventListener("submit",function(event) {
+  event.preventDefault();
+
+  const selectedFood = document.querySelectorAll('input[name="food"]:checked');
+
+  if(selectedFood.length === 0) {
+    alert("Please select at least one preferred food assistance option.");
+    return;
+  }
+
+  if(!this.reportValidity()) return;
+
+  document.getElementById("success").style.display = "block";
+  document.getElementById("success").scrollIntoView({behavior:"smooth"});
+});
+</script>
+
+</body>
+</html>
