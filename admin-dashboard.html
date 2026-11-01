@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | UPSInfaq</title>
+<style>
+:root {
+  --green: #064e3b;
+  --dark: #022c22;
+  --gold: #d6ad50;
+  --cream: #f7f5ed;
+  --white: #ffffff;
+  --muted: #718078;
+  --border: #e5e9e4;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Arial, sans-serif;
+  background: var(--cream);
+  color: #20352c;
+}
+header {
+  background: var(--dark);
+  color: white;
+  padding: 20px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.logo { font-size: 25px; font-weight: bold; }
+.logo span { color: var(--gold); }
+.admin-label {
+  color: var(--gold);
+  font-size: 12px;
+  margin-top: 5px;
+  letter-spacing: 2px;
+}
+.header-right { display: flex; align-items: center; gap: 15px; }
+.header-right a {
+  color: white;
+  text-decoration: none;
+  border: 1px solid #668579;
+  padding: 9px 15px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.container { max-width: 1200px; margin: 35px auto; padding: 0 20px; }
+.welcome {
+  background: linear-gradient(120deg, #064e3b, #08745a);
+  color: white;
+  border-radius: 18px;
+  padding: 30px;
+  margin-bottom: 28px;
+}
+.welcome h1 { font-size: 27px; margin-bottom: 9px; }
+.welcome p { color: #d4e8df; line-height: 1.6; }
+.welcome strong { color: var(--gold); }
+.section-title { font-size: 19px; margin: 28px 0 15px; color: var(--green); }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 15px;
+}
+.stat, .panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 21px;
+}
+.stat small { color: var(--muted); }
+.stat h2 { font-size: 28px; color: var(--green); margin: 12px 0 5px; }
+.stat p { color: var(--muted); font-size: 12px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+.menu-card {
+  background: white;
+  padding: 21px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+}
+.menu-card .icon { font-size: 26px; margin-bottom: 12px; }
+.menu-card h3 { color: var(--green); margin-bottom: 8px; }
+.menu-card p { color: var(--muted); font-size: 13px; line-height: 1.5; margin-bottom: 15px; }
+.menu-card a {
+  display: inline-block;
+  color: var(--green);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 13px;
+}
+.panel { margin-top: 20px; overflow-x: auto; }
+.panel h3 { color: var(--green); margin-bottom: 16px; }
+table { width: 100%; border-collapse: collapse; min-width: 580px; }
+th, td {
+  padding: 13px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+th { color: var(--muted); }
+.status {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  background: #fff2d7;
+  color: #92650a;
+}
+.status.approved { background: #dff4e8; color: #187044; }
+.notice {
+  background: #fff8e7;
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+  padding: 17px;
+  margin-top: 22px;
+  color: #71551d;
+  font-size: 13px;
+  line-height: 1.6;
+}
+footer { text-align: center; padding: 30px 15px; color: var(--muted); font-size: 12px; }
+@media(max-width:600px) {
+  header { padding: 18px 5%; }
+  .welcome { padding: 23px; }
+  .welcome h1 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">UPS<span>Infaq</span></div>
+    <div class="admin-label">ADMINISTRATOR PANEL</div>
+  </div>
+  <div class="header-right">
+    <span>👑 Admin</span>
+    <a href="login.html">Log Out</a>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="welcome">
+    <h1>Admin Dashboard 👋</h1>
+    <p>Welcome to the UPSInfaq control centre.<br>
+    Manage users, monitor donations and oversee the entire
+    <strong>One Donation. Countless Hopes.</strong> mission.</p>
+  </section>
+
+  <h2 class="section-title">System Overview</h2>
+  <section class="stats">
+    <div class="stat">
+      <small>Registered Users</small>
+      <h2>—</h2>
+      <p>All registered accounts</p>
+    </div>
+    <div class="stat">
+      <small>Pending Approvals</small>
+      <h2>—</h2>
+      <p>Accounts awaiting review</p>
+    </div>
+    <div class="stat">
+      <small>Total Donations</small>
+      <h2>—</h2>
+      <p>All recorded contributions</p>
+    </div>
+    <div class="stat">
+      <small>Active Campaigns</small>
+      <h2>—</h2>
+      <p>Currently running campaigns</p>
+    </div>
+  </section>
+
+  <h2 class="section-title">Administration</h2>
+  <section class="grid">
+    <div class="menu-card">
+      <div class="icon">👥</div>
+      <h3>User Management</h3>
+      <p>View, manage and update student, donor, food stall and organizer accounts.</p>
+      <a href="#">Manage Users →</a>
+    </div>
+    <div class="menu-card">
+      <div class="icon">✅</div>
+      <h3>Account Approvals</h3>
+      <p>Review and approve Organizer and Food Stall registration requests.</p>
+      <a href="#">Review Applications →</a>
+    </div>
+    <div class="menu-card">
+      <div class="icon">💰</div>
+      <h3>Donation Monitoring</h3>
+      <p>Monitor donation records, contributions and transaction statuses.</p>
+      <a href="#">View Donations →</a>
+    </div>
+    <div class="menu-card">
+      <div class="icon">📦</div>
+      <h3>Inventory Monitoring</h3>
+      <p>Monitor food stock, expiry information and distribution records.</p>
+      <a href="#">View Inventory →</a>
+    </div>
+    <div class="menu-card">
+      <div class="icon">📢</div>
+      <h3>Campaign Management</h3>
+      <p>Monitor campaigns, campaign performance and distribution activities.</p>
+      <a href="#">Manage Campaigns →</a>
+    </div>
+    <div class="menu-card">
+      <div class="icon">📊</div>
+      <h3>Reports & Analytics</h3>
+      <p>Review platform statistics, donation impact and activity reports.</p>
+      <a href="#">View Reports →</a>
+    </div>
+    <div class="menu-card">
+      <div class="icon">🔐</div>
+      <h3>Security & Audit Logs</h3>
+      <p>Review administrator actions, access records and security events.</p>
+      <a href="#">View Security Logs →</a>
+    </div>
+    <div class="menu-card">
+      <div class="icon">⚙️</div>
+      <h3>System Settings</h3>
+      <p>Manage platform settings, notifications and system configurations.</p>
+      <a href="#">System Settings →</a>
+    </div>
+  </section>
+
+  <h2 class="section-title">Recent Account Approvals</h2>
+  <section class="panel">
+    <h3>Registration Requests</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Applicant</th>
+          <th>Account Type</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Example User</td>
+          <td>Organizer</td>
+          <td>—</td>
+          <td><span class="status">Pending</span></td>
+        </tr>
+        <tr>
+          <td>Example Stall</td>
+          <td>Food Stall</td>
+          <td>—</td>
+          <td><span class="status">Pending</span></td>
+        </tr>
+        <tr>
+          <td>Example Donor</td>
+          <td>Donor</td>
+          <td>—</td>
+          <td><span class="status approved">Approved</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="notice">
+    <strong>🔒 Security Reminder</strong><br>
+    Administrator access must be verified securely by the backend.
+    Only authorized administrators may approve accounts or change
+    critical system settings. Keep passwords and access codes private.
+  </div>
+
+</main>
+
+<footer>
+  © 2026 UPSInfaq | One Donation. Countless Hopes.
+</footer>
+
+</body>
+</html>
