@@ -5,16 +5,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Application Status | UPSInfaq</title>
+
 <style>
 :root {
-  --green:#064e3b; --dark:#022c22; --gold:#d6ad50;
-  --cream:#f7f5ed; --muted:#718078; --border:#e5e9e4;
+  --green:#064e3b;
+  --dark:#022c22;
+  --gold:#d6ad50;
+  --cream:#f7f5ed;
+  --muted:#718078;
+  --border:#e5e9e4;
 }
 * { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:Arial,sans-serif; background:var(--cream); color:#20352c; }
+body {
+  font-family:Arial,sans-serif;
+  background:var(--cream);
+  color:#20352c;
+}
 header {
-  background:var(--dark); color:white; padding:19px 6%;
-  display:flex; justify-content:space-between; align-items:center; gap:12px;
+  background:var(--dark);
+  color:white;
+  padding:19px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
 }
 .logo { font-size:25px; font-weight:bold; }
 .logo span { color:var(--gold); }
@@ -22,57 +36,71 @@ header a { color:white; text-decoration:none; font-size:13px; }
 .container { max-width:850px; margin:35px auto; padding:0 18px; }
 .hero {
   background:linear-gradient(120deg,#064e3b,#08745a);
-  color:white; padding:28px; border-radius:16px; margin-bottom:24px;
+  color:white;
+  padding:28px;
+  border-radius:16px;
+  margin-bottom:24px;
 }
 .hero h1 { font-size:26px; margin-bottom:9px; }
 .hero p { color:#d5e9df; font-size:14px; line-height:1.6; }
 .panel {
-  background:white; border:1px solid var(--border);
-  border-radius:14px; padding:23px; margin-bottom:20px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:23px;
+  margin-bottom:20px;
 }
 .panel h2 { color:var(--green); font-size:19px; margin-bottom:16px; }
-.search-row { display:flex; gap:10px; flex-wrap:wrap; }
-input {
-  flex:1; min-width:180px; padding:12px;
-  border:1px solid var(--border); border-radius:8px; font-size:14px;
-}
-button {
-  background:var(--green); color:white; border:0;
-  padding:12px 18px; border-radius:8px; font-weight:bold; cursor:pointer;
-}
-.hint { color:var(--muted); font-size:12px; margin-top:10px; }
 .hidden { display:none; }
 .status {
-  display:inline-block; border-radius:20px; padding:8px 13px;
-  font-size:12px; font-weight:bold; background:#fff2d7; color:#92650a;
+  display:inline-block;
+  border-radius:20px;
+  padding:8px 13px;
+  font-size:12px;
+  font-weight:bold;
+  background:#fff2d7;
+  color:#92650a;
 }
 .status.approved { background:#e0f4e8; color:#187044; }
 .status.rejected { background:#fde8e7; color:#b42318; }
 .status.review { background:#e5efff; color:#245b9b; }
 .details {
-  display:grid; grid-template-columns:1fr 1fr; gap:14px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
 }
-.detail {
-  background:#f7f9f6; padding:14px; border-radius:9px;
-}
+.detail { background:#f7f9f6; padding:14px; border-radius:9px; }
 .detail small { display:block; color:var(--muted); margin-bottom:7px; }
-.detail strong { color:var(--green); font-size:14px; }
+.detail strong { color:var(--green); font-size:14px; overflow-wrap:anywhere; }
 .timeline { margin:20px 0 0 8px; }
 .step {
-  position:relative; padding:0 0 23px 35px;
-  border-left:2px solid #dfe7df; margin-left:8px;
+  position:relative;
+  padding:0 0 23px 35px;
+  border-left:2px solid #dfe7df;
+  margin-left:8px;
 }
 .step:last-child { border-left:2px solid transparent; }
 .dot {
-  position:absolute; left:-9px; top:0; width:16px; height:16px;
-  border-radius:50%; background:#dfe7df; border:3px solid white;
+  position:absolute;
+  left:-9px;
+  top:0;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:#dfe7df;
+  border:3px solid white;
 }
 .step.done .dot { background:var(--green); }
 .step h3 { font-size:14px; color:var(--green); margin-bottom:5px; }
 .step p { font-size:12px; color:var(--muted); line-height:1.5; }
 .notice {
-  background:#fff8e7; border-left:4px solid var(--gold);
-  padding:15px; border-radius:8px; font-size:13px; line-height:1.6;
+  background:#fff8e7;
+  border-left:4px solid var(--gold);
+  padding:15px;
+  border-radius:8px;
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:20px;
 }
 footer { text-align:center; padding:28px; color:var(--muted); font-size:12px; }
 @media(max-width:500px) {
@@ -81,6 +109,7 @@ footer { text-align:center; padding:28px; color:var(--muted); font-size:12px; }
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -89,41 +118,41 @@ footer { text-align:center; padding:28px; color:var(--muted); font-size:12px; }
 </header>
 
 <main class="container">
+
   <section class="hero">
     <h1>Application Status 📋</h1>
-    <p>Check your food assistance application progress.
-    We will update your application status after it has been
-    reviewed by the authorized Organizer team.</p>
-  </section>
-
-  <section class="panel">
-    <h2>Check Your Application</h2>
-    <div class="search-row">
-      <input id="reference" type="text" placeholder="Enter application reference ID">
-      <button onclick="checkStatus()">Check Status</button>
-    </div>
-    
+    <p>
+      Check your food assistance application progress.
+      Your latest application status will be displayed here.
+    </p>
   </section>
 
   <section id="applicationResult" class="hidden">
+
     <section class="panel">
       <h2>Application Summary</h2>
+
       <div class="details">
         <div class="detail">
           <small>Reference ID</small>
-          <strong>UPSI-APP-001</strong>
+          <strong id="referenceId">-</strong>
         </div>
+
         <div class="detail">
           <small>Student Name</small>
-          <strong>Example Student</strong>
+          <strong id="studentName">-</strong>
         </div>
+
         <div class="detail">
           <small>Application Date</small>
-          <strong>Demo Record</strong>
+          <strong id="applicationDate">-</strong>
         </div>
+
         <div class="detail">
           <small>Current Status</small>
-          <strong><span id="statusBadge" class="status review">Under Review</span></strong>
+          <strong>
+            <span id="statusBadge" class="status">Pending</span>
+          </strong>
         </div>
       </div>
     </section>
@@ -136,17 +165,15 @@ footer { text-align:center; padding:28px; color:var(--muted); font-size:12px; }
     <section class="panel">
       <h2>Organizer's Remarks</h2>
       <p id="remarks" style="font-size:13px;line-height:1.7;color:#52635a">
-        Your application is currently being reviewed.
+        Your application has been received.
       </p>
     </section>
+
   </section>
-<div id="message" class="notice">
-  <strong>📌 Application Status</strong><br>
-  Your application information will appear here once loaded.
-</div>
-    <strong>📌 Important</strong><br>
-    Enter the demo reference ID above to view an example application.
-    Actual application records will be available after database integration.
+
+  <div id="message" class="notice">
+    <strong>📌 Application Status</strong><br>
+    Loading your application information...
   </div>
 
   <div class="notice">
@@ -154,107 +181,137 @@ footer { text-align:center; padding:28px; color:var(--muted); font-size:12px; }
     If you have questions about your application, please contact the
     authorized UPSInfaq Organizer team through the official support channel.
   </div>
+
 </main>
 
-<footer>© 2026 UPSInfaq | One Donation. Countless Hopes.</footer>
+<footer>
+  © 2026 UPSInfaq | One Donation. Countless Hopes.
+</footer>
 
+<!-- Supabase connection -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+const SUPABASE_URL = "https://xyqtowmquptichpkvbwn.supabase.co";
+const SUPABASE_KEY = "sb_publishable_80HFOvfbeOTnDJUTakdrPA_30Im5_Vt";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
 async function checkStatus() {
   const result = document.getElementById("applicationResult");
   const message = document.getElementById("message");
-  const reference = document.getElementById("reference");
 
   message.classList.remove("hidden");
+  result.classList.add("hidden");
   message.textContent = "Loading your application...";
 
-  const { data: authData, error: authError } =
-    await supabaseClient.auth.getUser();
+  try {
+    const { data: authData, error: authError } =
+      await supabaseClient.auth.getUser();
 
-  if (authError || !authData.user) {
-    message.textContent = "Please login to view your application status.";
-    window.location.href = "login.html";
-    return;
+    if (authError || !authData.user) {
+      message.textContent = "Please login to view your application status.";
+      window.location.href = "login.html";
+      return;
+    }
+
+    const user = authData.user;
+
+    const { data: profile, error: profileError } = await supabaseClient
+      .from("profiles")
+      .select("full_name, role")
+      .eq("id", user.id)
+      .single();
+
+    if (profileError || !profile || profile.role !== "student") {
+      message.textContent = "Only Student accounts can view this page.";
+      return;
+    }
+
+    const { data: applications, error } = await supabaseClient
+      .from("food_applications")
+      .select("*")
+      .eq("student_id", user.id)
+      .order("submitted_at", { ascending: false });
+
+    if (error) {
+      message.textContent = "Unable to load applications: " + error.message;
+      return;
+    }
+
+    if (!applications || applications.length === 0) {
+      message.textContent =
+        "You have not submitted any food assistance applications yet.";
+      return;
+    }
+
+    const app = applications[0];
+    const status = app.status;
+
+    document.getElementById("referenceId").textContent = app.id;
+    document.getElementById("studentName").textContent = profile.full_name;
+    document.getElementById("applicationDate").textContent =
+      new Date(app.submitted_at).toLocaleDateString();
+
+    const badge = document.getElementById("statusBadge");
+    badge.textContent = status.replace("_", " ").toUpperCase();
+    badge.className = "status";
+
+    if (status === "approved") {
+      badge.classList.add("approved");
+    } else if (status === "rejected") {
+      badge.classList.add("rejected");
+    } else if (status === "under_review") {
+      badge.classList.add("review");
+    }
+
+    const stages = [
+      {
+        name: "Application Submitted",
+        description: "Your application has been received."
+      },
+      {
+        name: "Under Review",
+        description: "Organizer is reviewing your application."
+      },
+      {
+        name: "Decision Made",
+        description: "The application decision has been recorded."
+      }
+    ];
+
+    let currentStage = 0;
+
+    if (status === "under_review") currentStage = 1;
+    if (status === "approved" || status === "rejected") currentStage = 2;
+
+    document.getElementById("timeline").innerHTML =
+      stages.map((stage, index) => `
+        <div class="step ${index <= currentStage ? "done" : ""}">
+          <span class="dot"></span>
+          <h3>${index + 1}. ${stage.name}</h3>
+          <p>${stage.description}</p>
+        </div>
+      `).join("");
+
+    document.getElementById("remarks").textContent =
+      status === "approved"
+        ? "Your application has been approved."
+        : status === "rejected"
+        ? "Your application has been rejected. Please contact the Organizer team."
+        : status === "under_review"
+        ? "Your application is currently under review."
+        : "Your application has been received and is pending review.";
+
+    result.classList.remove("hidden");
+    message.classList.add("hidden");
+
+  } catch (err) {
+    message.textContent = "An unexpected error occurred: " + err.message;
   }
-
-  const user = authData.user;
-
-  const { data: profile, error: profileError } = await supabaseClient
-    .from("profiles")
-    .select("full_name, role")
-    .eq("id", user.id)
-    .single();
-
-  if (profileError || profile.role !== "student") {
-    result.classList.add("hidden");
-    message.textContent = "Only Student accounts can view this page.";
-    return;
-  }
-
-  const { data: applications, error } = await supabaseClient
-    .from("food_applications")
-    .select("*")
-    .eq("student_id", user.id)
-    .order("submitted_at", { ascending: false });
-
-  if (error) {
-    result.classList.add("hidden");
-    message.textContent = "Unable to load applications: " + error.message;
-    return;
-  }
-
-  if (!applications || applications.length === 0) {
-    result.classList.add("hidden");
-    message.textContent = "You have not submitted any food assistance applications yet.";
-    return;
-  }
-
-  const app = applications[0];
-  const status = app.status;
-
-  reference.value = app.id;
-
-  document.querySelector(".detail strong").textContent = app.id;
-  document.querySelectorAll(".detail strong")[1].textContent =
-    profile.full_name;
-  document.querySelectorAll(".detail strong")[2].textContent =
-    new Date(app.submitted_at).toLocaleDateString();
-
-  const badge = document.getElementById("statusBadge");
-  badge.textContent = status.replace("_", " ").toUpperCase();
-  badge.className = "status";
-
-  if (status === "approved") badge.classList.add("approved");
-  else if (status === "rejected") badge.classList.add("rejected");
-  else if (status === "under_review") badge.classList.add("review");
-
-  const stages = [
-    {name:"Application Submitted", description:"Your application has been received."},
-    {name:"Under Review", description:"Organizer is reviewing your application."},
-    {name:"Decision Made", description:"The application decision has been recorded."}
-  ];
-
-  let currentStage = 0;
-  if (status === "under_review") currentStage = 1;
-  if (status === "approved" || status === "rejected") currentStage = 2;
-
-  document.getElementById("timeline").innerHTML =
-    stages.map((stage, index) => `
-      <div class="step ${index <= currentStage ? "done" : ""}">
-        <span class="dot"></span>
-        <h3>${index + 1}. ${stage.name}</h3>
-        <p>${stage.description}</p>
-      </div>
-    `).join("");
-
-  document.getElementById("remarks").textContent =
-    status === "approved" ? "Your application has been approved." :
-    status === "rejected" ? "Your application has been rejected. Please contact the Organizer team." :
-    status === "under_review" ? "Your application is currently under review." :
-    "Your application has been received and is pending review.";
-
-  result.classList.remove("hidden");
-  message.classList.add("hidden");
 }
 
 document.addEventListener("DOMContentLoaded", checkStatus);
