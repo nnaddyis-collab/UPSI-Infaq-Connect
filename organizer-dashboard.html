@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organizer Dashboard | UPSInfaq</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#f4f7f2;color:#20392e}
+.sidebar{width:250px;background:#064e3b;color:white;position:fixed;inset:0 auto 0 0;padding:27px 19px;display:flex;flex-direction:column}
+.logo{text-align:center;color:#f5d58a;font-size:26px;font-weight:800}
+.tagline{text-align:center;font-size:10px;color:#d5c28f;margin:6px 0 35px}
+.menu-label{font-size:10px;color:#a9c8b8;letter-spacing:1.5px;margin:12px 10px}
+.menu a{display:block;text-decoration:none;color:#e4eee8;padding:12px 13px;border-radius:10px;font-size:12px;margin-bottom:5px}
+.menu a.active,.menu a:hover{background:#0c7254}
+.logout{margin-top:auto;text-decoration:none;color:#f5d58a;padding:13px;font-size:13px}
+.main{margin-left:250px;padding:30px;max-width:1550px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;gap:15px}
+h1{font-size:24px;color:#064e3b}
+.welcome p{font-size:13px;color:#829087;margin-top:6px}
+.profile{background:white;padding:11px 15px;border-radius:12px;font-size:12px;border:1px solid #e4ebe4}
+.profile strong{color:#087653}
+.banner{background:linear-gradient(120deg,#064e3b,#0d7657);border-radius:18px;padding:25px;color:white;margin-bottom:24px}
+.banner h2{font-size:21px;color:#f5d58a;margin-bottom:9px}
+.banner p{font-size:13px;line-height:1.7;color:#e3f0e9}
+.section-title{font-size:17px;color:#174b37;margin:25px 0 14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.stat,.panel,.action{background:white;border:1px solid #e6ece5;border-radius:15px;padding:18px}
+.stat small{font-size:12px;color:#839087}
+.stat h2{font-size:26px;color:#075b42;margin:10px 0 4px}
+.stat span{font-size:11px;color:#a18448}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.action .emoji{font-size:25px;margin-bottom:11px}
+.action h3{font-size:14px;color:#14523a;margin-bottom:7px}
+.action p{font-size:11px;line-height:1.6;color:#849087;margin-bottom:13px}
+.action a{font-size:12px;color:#087653;font-weight:700;text-decoration:none}
+.panel{margin-top:19px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.panel-head h3{font-size:15px;color:#14523a}
+.panel-head a{font-size:11px;color:#087653;text-decoration:none}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;color:#839087;font-weight:600;padding:12px 8px;border-bottom:1px solid #edf0eb}
+td{padding:13px 8px;border-bottom:1px solid #f0f2ef}
+.empty{text-align:center;color:#98a29a;padding:24px}
+.status{background:#fff4d8;color:#9b762b;padding:5px 9px;border-radius:20px;font-size:10px}
+.notice{background:#f5f0df;color:#80652e;padding:13px;border-radius:10px;font-size:11px;line-height:1.6;margin-top:14px}
+.footer{text-align:center;color:#a0aaa2;font-size:10px;margin-top:28px}
+@media(max-width:1000px){.sidebar{width:205px}.main{margin-left:205px;padding:20px}.stats{grid-template-columns:repeat(2,1fr)}.actions{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.sidebar{position:relative;width:100%;height:auto;padding:18px}.tagline{margin-bottom:13px}.menu{display:flex;overflow-x:auto;gap:4px}.menu-label{display:none}.menu a{white-space:nowrap;padding:10px;font-size:11px}.logout{margin-top:5px}.main{margin:0;padding:16px}.topbar{align-items:flex-start;flex-direction:column}.actions{grid-template-columns:1fr}.panel{overflow-x:auto}table{min-width:500px}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="logo">UPSInfaq</div>
+  <div class="tagline">ONE DONATION. COUNTLESS HOPES.</div>
+  <div class="menu-label">ORGANIZER MENU</div>
+  <nav class="menu">
+    <a href="organizer-dashboard.html" class="active">⌂ Dashboard</a>
+    <a href="#applications">♡ Student Applications</a>
+    <a href="#campaigns">✧ Campaigns</a>
+    <a href="#donations">🍚 Donations</a>
+    <a href="#inventory">📦 Inventory</a>
+    <a href="#distribution">🚚 Distribution</a>
+    <a href="#reports">▤ Reports</a>
+  </nav>
+  <a href="login.html" class="logout">↪ Log Out</a>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div class="welcome">
+      <h1>Organizer Dashboard</h1>
+      <p>Coordinate food assistance and manage UPSInfaq operations.</p>
+    </div>
+    <div class="profile">🌿 <strong>Organizer Account</strong></div>
+  </header>
+
+  <section class="banner">
+    <h2>Welcome, UPSInfaq Organizer!</h2>
+    <p>Manage applications, coordinate donations and ensure food reaches students safely. Every action creates a stronger campus community.</p>
+  </section>
+
+  <h2 class="section-title">Operations Overview</h2>
+  <section class="stats">
+    <div class="stat"><small>Student Applications</small><h2>—</h2><span>Awaiting review</span></div>
+    <div class="stat"><small>Pending Donations</small><h2>—</h2><span>Awaiting verification</span></div>
+    <div class="stat"><small>Active Campaigns</small><h2>—</h2><span>Ongoing campaigns</span></div>
+    <div class="stat"><small>Food Inventory</small><h2>—</h2><span>Verified food items</span></div>
+  </section>
+
+  <h2 class="section-title">Management Centre</h2>
+  <section class="actions">
+    <article class="action" id="applications">
+      <div class="emoji">👩‍🎓</div>
+      <h3>Student Applications</h3>
+      <p>Review student applications, supporting documents and eligibility information.</p>
+      <a href="#applications">Review Applications →</a>
+    </article>
+
+    <article class="action" id="campaigns">
+      <div class="emoji">🎯</div>
+      <h3>Campaign Management</h3>
+      <p>Create campaigns, set donation targets and monitor fundraising progress.</p>
+      <a href="#campaigns">Manage Campaigns →</a>
+    </article>
+
+    <article class="action" id="donations">
+      <div class="emoji">🍚</div>
+      <h3>Donation Verification</h3>
+      <p>Verify food received from donors before adding quantities to official inventory.</p>
+      <a href="#donations">Verify Donations →</a>
+    </article>
+
+    <article class="action" id="inventory">
+      <div class="emoji">📦</div>
+      <h3>Food Inventory</h3>
+      <p>Monitor food quantities, expiry dates and safe storage information.</p>
+      <a href="#inventory">Manage Inventory →</a>
+    </article>
+
+    <article class="action" id="distribution">
+      <div class="emoji">🚚</div>
+      <h3>Food Distribution</h3>
+      <p>Coordinate food distribution and track student collection records.</p>
+      <a href="#distribution">Manage Distribution →</a>
+    </article>
+
+    <article class="action" id="reports">
+      <div class="emoji">📊</div>
+      <h3>Reports & Analytics</h3>
+      <p>Review donation performance, student assistance and inventory reports.</p>
+      <a href="#reports">View Reports →</a>
+    </article>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h3>Recent Donation Submissions</h3>
+      <a href="#donations">View All</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Reference</th><th>Donor</th><th>Food Category</th><th>Quantity</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="5" class="empty">No donation submissions yet. Records will appear here after database connection.</td></tr>
+      </tbody>
+    </table>
+    <div class="notice">
+      <strong>Inventory control:</strong> Food stock must only be increased after an organizer confirms the actual food received and verifies its safety, quantity and condition.
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h3>Student Application Review</h3></div>
+    <table>
+      <thead>
+        <tr><th>Application ID</th><th>Student</th><th>Submission Date</th><th>Review Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="4" class="empty">No student applications available yet.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="footer">© 2026 UPSInfaq · One Donation. Countless Hopes.</div>
+</main>
+</body>
+</html>
