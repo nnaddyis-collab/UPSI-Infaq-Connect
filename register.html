@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#064e3b">
+  <title>Register | UPSInfaq</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #022c22, #065f46, #064e3b);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px;
+      color: #18352b;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 540px;
+      background: #fffdf5;
+      padding: 35px;
+      border-radius: 24px;
+      box-shadow: 0 24px 65px rgba(0,0,0,.28);
+      border: 1px solid rgba(230,190,100,.5);
+    }
+
+    .logo {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      margin: 0 auto 12px;
+      background: #064e3b;
+      color: #f5d58a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .brand {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 800;
+      color: #064e3b;
+    }
+
+    .tagline {
+      text-align: center;
+      color: #9a7938;
+      font-size: 11px;
+      letter-spacing: .5px;
+      margin: 6px 0 25px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #173b2e;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #78847c;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 15px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      color: #315345;
+      font-size: 13px;
+      font-weight: 700;
+      margin: 14px 0 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d9e3da;
+      border-radius: 10px;
+      background: white;
+      font-size: 13px;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: #0b8060;
+      box-shadow: 0 0 0 3px rgba(11,128,96,.1);
+    }
+
+    .role-note {
+      background: #f5f0df;
+      color: #80652e;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 11px;
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #64746b;
+      line-height: 1.5;
+    }
+
+    .terms input {
+      width: auto;
+      margin-top: 2px;
+    }
+
+    .terms a {
+      color: #087653;
+      font-weight: 700;
+    }
+
+    .submit {
+      width: 100%;
+      margin-top: 22px;
+      padding: 15px;
+      background: linear-gradient(135deg, #087653, #064e3b);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .submit:hover {
+      opacity: .9;
+    }
+
+    .login {
+      text-align: center;
+      margin-top: 22px;
+      color: #718078;
+      font-size: 13px;
+    }
+
+    .login a, .back {
+      color: #087653;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      font-size: 12px;
+      color: #718078;
+    }
+
+    @media(max-width: 480px) {
+      .container {
+        padding: 25px 20px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <div class="logo">UI</div>
+    <div class="brand">UPSInfaq</div>
+    <div class="tagline">ONE DONATION. COUNTLESS HOPES.</div>
+
+    <h2>Create Your Account</h2>
+    <p class="subtitle">Sertai komuniti UPSInfaq hari ini.</p>
+
+    <form id="registerForm">
+      <div class="form-grid">
+
+        <div>
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname"
+            placeholder="Nama penuh" autocomplete="name" required>
+        </div>
+
+        <div>
+          <label for="studentid">Student ID (if applicable)</label>
+          <input type="text" id="studentid"
+            placeholder="ID pelajar">
+        </div>
+
+        <div class="full">
+          <label for="email">Email Address</label>
+          <input type="email" id="email"
+            placeholder="contoh@email.com"
+            autocomplete="email" required>
+        </div>
+
+        <div class="full">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone"
+            placeholder="Contoh: 0123456789"
+            autocomplete="tel" required>
+        </div>
+
+        <div class="full">
+          <label for="role">Select Account Type</label>
+          <select id="role" required>
+            <option value="">-- Choose your role --</option>
+            <option value="student">Student</option>
+            <option value="donor">Donor</option>
+            <option value="food-stall">Food Stall</option>
+            <option value="organizer">Organizer</option>
+          </select>
+        </div>
+
+        <div class="full">
+          <label for="password">Create Password</label>
+          <input type="password" id="password"
+            placeholder="Minimum 8 characters"
+            minlength="8" autocomplete="new-password" required>
+        </div>
+
+        <div class="full">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword"
+            placeholder="Enter password again"
+            minlength="8" autocomplete="new-password" required>
+        </div>
+
+      </div>
+
+      <div class="role-note">
+        <strong>Account approval:</strong>
+        Some account types may require verification and approval
+        by the UPSInfaq administrator before access is granted.
+      </div>
+
+      <label class="terms">
+        <input type="checkbox" id="agree" required>
+        <span>I agree to the UPSInfaq terms and conditions.</span>
+      </label>
+
+      <button type="submit" class="submit">
+        CREATE ACCOUNT →
+      </button>
+    </form>
+
+    <p class="login">
+      Already have an account?
+      <a href="login.html">Login Here</a>
+    </p>
+
+    <a href="index.html" class="back">← Back to Homepage</a>
+
+  </main>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (password !== confirmPassword) {
+        alert("Password tidak sama. Sila semak semula.");
+        return;
+      }
+
+      alert("Reka bentuk pendaftaran berjaya diuji! Fungsi pendaftaran akaun sebenar akan disambungkan melalui sistem keselamatan UPSInfaq.");
+    });
+  </script>
+</body>
+</html>
