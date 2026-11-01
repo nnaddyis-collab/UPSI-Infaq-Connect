@@ -269,10 +269,54 @@
       }
     }
 
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-      alert("Login belum diaktifkan. Sambungan keselamatan akaun akan dibuat selepas reka bentuk halaman selesai.");
-    });
+document.getElementById("loginForm").addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    alert("Login gagal: " + error.message);
+    return;
+  }
+
+  const { data: profile, error: profileError } = await supabaseClient
+    .from("profiles")
+    .select("role")
+    .eq("id", data.user.id)
+    .single();
+
+  if (profileError || !profile) {
+    await supabaseClient.auth.signOut();
+    alert("Profil pengguna tidak dijumpai. Sila hubungi administrator.");
+    return;
+  }
+
+  const dashboards = {
+    student: "student-dashboard.html",
+    donor: "donor-dashboard.html",
+    foodstall: "foodstall-dashboard.html",
+    organizer: "organizer-dashboard.html",
+    admin: "admin-dashboard.html"
+  };
+
+  const destination = dashboards[profile.role];
+
+  if (!destination) {
+    await supabaseClient.auth.signOut();
+    alert("Role akaun tidak sah.");
+    return;
+  }
+
+  window.location.href = destination;
+});
+
+    
 
     document.getElementById("forgotLink").addEventListener("click", function(event) {
       event.preventDefault();
