@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Details | UPSInfaq</title>
+<style>
+:root {
+  --green:#064e3b; --dark:#022c22; --gold:#d6ad50;
+  --cream:#f7f5ed; --muted:#718078; --border:#e5e9e4;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:Arial,sans-serif; background:var(--cream); color:#20352c; }
+header {
+  background:var(--dark); color:white; padding:19px 6%;
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+}
+.logo { font-size:25px; font-weight:bold; }
+.logo span { color:var(--gold); }
+header a { color:white; text-decoration:none; font-size:13px; }
+.container { max-width:760px; margin:35px auto; padding:0 18px; }
+.hero {
+  background:linear-gradient(120deg,#064e3b,#08745a);
+  color:white; padding:25px; border-radius:15px; margin-bottom:23px;
+}
+.hero h1 { font-size:25px; margin-bottom:9px; }
+.hero p { color:#d5e9df; font-size:14px; line-height:1.6; }
+.form-panel {
+  background:white; border:1px solid var(--border);
+  border-radius:14px; padding:25px; margin-bottom:20px;
+}
+.form-panel h2 { color:var(--green); font-size:19px; margin-bottom:18px; }
+label { display:block; font-weight:bold; font-size:13px; margin:15px 0 7px; }
+input,select,textarea {
+  width:100%; padding:12px; border:1px solid #d8dfd8;
+  border-radius:8px; font-size:14px; font-family:inherit;
+  background:white; color:#20352c;
+}
+textarea { min-height:85px; resize:vertical; }
+input:focus,select:focus,textarea:focus { outline:2px solid #a9c9b9; }
+.hint { font-size:12px; color:var(--muted); margin-top:6px; line-height:1.5; }
+.hidden { display:none; }
+.notice {
+  background:#fff8e7; border-left:4px solid var(--gold);
+  padding:15px; border-radius:8px; font-size:13px; line-height:1.6;
+}
+.check-row { display:flex; align-items:flex-start; gap:10px; margin-top:16px; }
+.check-row input { width:auto; margin-top:2px; }
+.check-row label { margin:0; font-weight:normal; line-height:1.5; }
+.submit {
+  width:100%; background:var(--green); color:white; border:0;
+  padding:15px; border-radius:9px; font-weight:bold; font-size:15px;
+  cursor:pointer; margin-top:20px;
+}
+.submit:hover { background:#08745a; }
+footer { text-align:center; padding:28px; color:var(--muted); font-size:12px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">UPS<span>Infaq</span></div>
+  <a href="donation.html">← Back to Marketplace</a>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Donation Details & Food Safety</h1>
+    <p>Please provide accurate information about your donated food.
+    These details help our Organizer team check food quality and
+    arrange safe distribution to students.</p>
+  </section>
+
+  <form id="donationForm">
+
+    <section class="form-panel">
+      <h2>1. Donor Information</h2>
+
+      <label for="donorName">Full Name *</label>
+      <input id="donorName" type="text" required placeholder="Enter your full name">
+
+      <label for="donorEmail">Email Address *</label>
+      <input id="donorEmail" type="email" required placeholder="Enter your email">
+
+      <label for="donorPhone">Phone Number *</label>
+      <input id="donorPhone" type="tel" required placeholder="e.g. 0123456789">
+    </section>
+
+    <section class="form-panel">
+      <h2>2. Food Category</h2>
+
+      <label for="category">Select Food Category *</label>
+      <select id="category" required>
+        <option value="">-- Select Category --</option>
+        <option value="dry">Dry Food / Packaged Food</option>
+        <option value="ready">Ready-to-Eat Food</option>
+      </select>
+
+      <label for="foodName">Food Item / Description *</label>
+      <input id="foodName" type="text" required placeholder="e.g. Rice, packed rice meal">
+
+      <label for="quantity">Quantity *</label>
+      <input id="quantity" type="number" min="1" required placeholder="Enter quantity">
+
+      <label for="unit">Unit *</label>
+      <select id="unit" required>
+        <option value="">-- Select Unit --</option>
+        <option>Pack</option>
+        <option>Piece</option>
+        <option>Box</option>
+        <option>Bottle</option>
+        <option>Kg</option>
+        <option>Tray</option>
+        <option>Meal</option>
+        <option>Carton</option>
+      </select>
+    </section>
+
+    <section class="form-panel hidden" id="dryFields">
+      <h2>3. Dry Food Information</h2>
+
+      <label for="expiryDate">Expiry Date *</label>
+      <input id="expiryDate" type="date">
+
+      <label for="packaging">Packaging Condition *</label>
+      <select id="packaging">
+        <option value="">-- Select Condition --</option>
+        <option>Sealed and unopened</option>
+        <option>Original packaging intact</option>
+        <option>Other</option>
+      </select>
+
+      <label for="storage">Storage Information</label>
+      <textarea id="storage" placeholder="e.g. Stored in a cool and dry place"></textarea>
+    </section>
+
+    <section class="form-panel hidden" id="readyFields">
+      <h2>3. Ready-to-Eat Food Information</h2>
+
+      <label for="prepDate">Preparation Date *</label>
+      <input id="prepDate" type="date">
+
+      <label for="prepTime">Preparation Time *</label>
+      <input id="prepTime" type="time">
+
+      <label for="safeUntil">Latest Safe Distribution Time *</label>
+      <input id="safeUntil" type="datetime-local">
+
+      <label for="ingredients">Ingredients *</label>
+      <textarea id="ingredients" placeholder="List the ingredients used"></textarea>
+
+      <label for="allergens">Allergen Information *</label>
+      <textarea id="allergens" placeholder="e.g. Contains eggs, milk, peanuts. Write None if not applicable."></textarea>
+
+      <label for="storageReady">Storage / Temperature Information *</label>
+      <select id="storageReady">
+        <option value="">-- Select Storage Method --</option>
+        <option>Room temperature</option>
+        <option>Refrigerated</option>
+        <option>Frozen</option>
+        <option>Hot holding</option>
+      </select>
+
+      <p class="hint">Prepared food must be handled and transported safely. The Organizer team will assess suitability before distribution.</p>
+    </section>
+
+    <section class="form-panel">
+      <h2>4. Collection Information</h2>
+
+      <label for="location">Collection Location *</label>
+      <input id="location" type="text" required placeholder="Enter collection address or location">
+
+      <label for="date">Preferred Collection Date *</label>
+      <input id="date" type="date" required>
+
+      <label for="notes">Additional Notes</label>
+      <textarea id="notes" placeholder="Any special instructions for the Organizer?"></textarea>
+
+      <div class="notice">
+        <strong>Important Food Safety Notice</strong><br>
+        Please ensure all donated food is safe, properly stored and
+        suitable for consumption. Submission does not mean automatic
+        approval. The Organizer must verify the donation before it is
+        added to the official inventory.
+      </div>
+
+      <div class="check-row">
+        <input type="checkbox" id="confirm" required>
+        <label for="confirm">I confirm that the information provided is accurate and that the donated food is safe to the best of my knowledge. *</label>
+      </div>
+
+      <button class="submit" type="submit">Submit Donation Details →</button>
+    </section>
+
+  </form>
+</main>
+
+<footer>© 2026 UPSInfaq | One Donation. Countless Hopes.</footer>
+
+<script>
+const category = document.getElementById("category");
+const dryFields = document.getElementById("dryFields");
+const readyFields = document.getElementById("readyFields");
+
+function setRequired(container,required) {
+  container.querySelectorAll("input,select,textarea").forEach(field => {
+    field.required = required && field.dataset.optional !== "true";
+  });
+}
+
+category.addEventListener("change",function() {
+  dryFields.classList.toggle("hidden",this.value !== "dry");
+  readyFields.classList.toggle("hidden",this.value !== "ready");
+
+  setRequired(dryFields,this.value === "dry");
+  setRequired(readyFields,this.value === "ready");
+});
+
+document.getElementById("donationForm").addEventListener("submit",function(event) {
+  event.preventDefault();
+
+  if(!this.reportValidity()) return;
+
+  alert(
+    "Donation details completed!\\n\\n" +
+    "This is a demonstration form. The information has not yet been saved or submitted to the UPSInfaq database. Database connection will be added in a later stage."
+  );
+});
+</script>
+
+</body>
+</html>
