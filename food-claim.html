@@ -2,51 +2,30 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Food Claim | UPSInfaq</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; font-family: Arial, sans-serif;
-      background: #071b16; color: #f5f1df;
-    }
-    header {
-      background: #0d3025; border-bottom: 1px solid #b99a48;
-      padding: 20px 7%; display: flex;
-      justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
-    }
-    .brand { color: #e2c16b; font-size: 25px; font-weight: bold; }
-    header a { color: #f5f1df; text-decoration: none; }
-    main { max-width: 850px; margin: 35px auto; padding: 0 18px; }
-    h1, h2 { color: #e2c16b; }
-    .muted { color: #b9c9c0; line-height: 1.6; }
-    .card {
-      background: #102820; border: 1px solid #315544;
-      border-radius: 16px; padding: 25px; margin: 20px 0;
-    }
-    .claim {
-      border: 1px solid #315544; border-radius: 12px;
-      padding: 18px; margin: 15px 0;
-    }
-    .claim-id { color: #e2c16b; font-weight: bold; overflow-wrap: anywhere; }
-    .status { color: #e2c16b; font-weight: bold; }
-    .detail {
-      display: flex; justify-content: space-between;
-      gap: 12px; padding: 13px 0;
-      border-bottom: 1px solid #29483b; flex-wrap: wrap;
-    }
-    .value { color: #e2c16b; font-weight: bold; }
-    .button {
-      display: inline-block; background: #c5a653;
-      color: #102820; text-decoration: none;
-      padding: 12px 20px; border-radius: 8px;
-      font-weight: bold; margin-top: 12px;
-    }
-    .center { text-align: center; }
-    footer { text-align: center; padding: 25px; color: #91a69a; font-size: 13px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Claim | UPSInfaq</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#071b16;color:#f5f1df}
+header{background:#0d3025;border-bottom:1px solid #b99a48;padding:20px 7%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.brand{color:#e2c16b;font-size:25px;font-weight:bold}
+header a{color:#f5f1df;text-decoration:none}
+main{max-width:850px;margin:35px auto;padding:0 18px}
+h1,h2{color:#e2c16b}
+.muted{color:#b9c9c0;line-height:1.6}
+.card{background:#102820;border:1px solid #315544;border-radius:16px;padding:25px;margin:20px 0}
+.food-item,.claim{border:1px solid #315544;border-radius:12px;padding:18px;margin:15px 0}
+.food-name{color:#e2c16b;font-size:19px;font-weight:bold}
+.stock{color:#b9c9c0;margin:10px 0}
+input{width:100%;padding:12px;border-radius:8px;border:1px solid #587464;background:#071b16;color:white;margin:8px 0 12px}
+button{background:#c5a653;color:#102820;border:0;padding:12px 20px;border-radius:8px;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+.status{color:#e2c16b;font-weight:bold}
+.claim-id{overflow-wrap:anywhere;color:#e2c16b}
+.center{text-align:center}
+footer{text-align:center;padding:25px;color:#91a69a;font-size:13px}
+</style>
 </head>
 <body>
 
@@ -56,129 +35,258 @@
 </header>
 
 <main>
-  <h1>Food Claim / Penebusan Makanan</h1>
-  <p class="muted">Semak rekod tuntutan bantuan makanan anda di sini.</p>
+<h1>Food Claim / Penebusan Makanan</h1>
+<p class="muted">Pilih makanan yang tersedia dan masukkan kuantiti untuk membuat tuntutan.</p>
 
-  <div class="card">
-    <h2>Rekod Tuntutan Saya</h2>
-    <p class="muted" id="message">Sedang memuatkan rekod tuntutan...</p>
-    <div id="claims"></div>
-  </div>
+<div class="card">
+  <h2>Inventori Makanan</h2>
+  <p class="muted" id="inventoryMessage">Memuatkan inventori...</p>
+  <div id="inventory"></div>
+</div>
 
-  <div class="card">
-    <h2>Cara Menebus Makanan</h2>
-    <p class="muted">1. Pastikan permohonan bantuan makanan anda telah diluluskan.</p>
-    <p class="muted">2. Semak arahan penebusan daripada pihak penganjur.</p>
-    <p class="muted">3. Tunjukkan kod tuntutan kepada petugas kedai apabila diarahkan.</p>
-    <p class="muted">4. Petugas perlu mengesahkan tuntutan melalui sistem UPSInfaq.</p>
-    <p class="muted">5. Rekod penebusan akan dikemas kini selepas pengesahan.</p>
-  </div>
+<div class="card">
+  <h2>Rekod Tuntutan Saya</h2>
+  <p class="muted" id="claimMessage">Memuatkan rekod...</p>
+  <div id="claims"></div>
+</div>
 
-  <div class="center">
-    <a class="button" href="food-wallet.html">Kembali ke e-Food Wallet</a>
-  </div>
+<div class="card">
+  <h2>Cara Menebus Makanan</h2>
+  <p class="muted">1. Pilih makanan dan kuantiti yang diperlukan.</p>
+  <p class="muted">2. Hantar tuntutan melalui sistem.</p>
+  <p class="muted">3. Tunggu pengesahan pihak penganjur.</p>
+  <p class="muted">4. Tunjukkan kod tuntutan kepada petugas apabila diarahkan.</p>
+</div>
+
+<div class="center">
+  <a href="food-wallet.html" style="color:#e2c16b">Kembali ke e-Food Wallet</a>
+</div>
 </main>
 
 <footer>© 2026 UPSInfaq — One Donation. Countless Hopes.</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = "https://xyqtowmquptichpkvbwn.supabase.co";
-const SUPABASE_KEY = "sb_publishable_80HFOvfbeOTnDJUTakdrPA_30Im5_Vt";
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL, SUPABASE_KEY
+const SUPABASE_URL="https://xyqtowmquptichpkvbwn.supabase.co";
+const SUPABASE_KEY="sb_publishable_80HFOvfbeOTnDJUTakdrPA_30Im5_Vt";
+
+const supabaseClient=window.supabase.createClient(
+  SUPABASE_URL,SUPABASE_KEY
 );
 
-const message = document.getElementById("message");
-const claimsContainer = document.getElementById("claims");
+const inventory=document.getElementById("inventory");
+const inventoryMessage=document.getElementById("inventoryMessage");
+const claimsContainer=document.getElementById("claims");
+const claimMessage=document.getElementById("claimMessage");
 
-function formatDate(value) {
-  if (!value) return "-";
-  return new Date(value).toLocaleString("ms-MY");
-}
+let currentUser=null;
 
-function statusLabel(status) {
-  const labels = {
-    pending: "Menunggu pengesahan",
-    approved: "Diluluskan",
-    redeemed: "Telah ditebus",
-    cancelled: "Dibatalkan"
+function statusLabel(status){
+  const labels={
+    pending:"Menunggu pengesahan",
+    approved:"Diluluskan",
+    redeemed:"Telah ditebus",
+    cancelled:"Dibatalkan"
   };
-  return labels[status] || status;
+  return labels[status]||status;
 }
 
-async function loadClaims() {
-  const { data: authData, error: authError } =
+function formatDate(value){
+  return value ? new Date(value).toLocaleString("ms-MY") : "-";
+}
+
+async function loadPage(){
+  const {data:authData,error:authError}=
     await supabaseClient.auth.getUser();
 
-  if (authError || !authData.user) {
-    window.location.href = "login.html";
+  if(authError||!authData.user){
+    window.location.href="login.html";
     return;
   }
 
-  const user = authData.user;
+  currentUser=authData.user;
 
-  const { data: profile, error: profileError } =
+  const {data:profile,error:profileError}=
     await supabaseClient
       .from("profiles")
-      .select("full_name, role")
-      .eq("id", user.id)
+      .select("role")
+      .eq("id",currentUser.id)
       .single();
 
-  if (profileError || profile.role !== "student") {
-    message.textContent = "Halaman ini hanya untuk akaun Student.";
+  if(profileError||profile.role!=="student"){
+    inventoryMessage.textContent="Halaman ini hanya untuk Student.";
+    claimMessage.textContent="";
     return;
   }
 
-  const { data: claims, error } = await supabaseClient
+  await loadInventory();
+  await loadClaims();
+}
+
+async function loadInventory(){
+  const {data:foods,error}=await supabaseClient
+    .from("food_inventory")
+    .select("id,food_name,food_category,quantity,expiry_date,storage_location")
+    .gt("quantity",0)
+    .order("food_name");
+
+  if(error){
+    inventoryMessage.textContent="Ralat memuatkan inventori: "+error.message;
+    return;
+  }
+
+  if(!foods||foods.length===0){
+    inventoryMessage.textContent="Tiada makanan tersedia buat masa ini.";
+    return;
+  }
+
+  inventoryMessage.textContent="Pilih makanan yang anda perlukan.";
+  inventory.innerHTML="";
+
+  foods.forEach(food=>{
+    const item=document.createElement("div");
+    item.className="food-item";
+
+    const name=document.createElement("div");
+    name.className="food-name";
+    name.textContent=food.food_name;
+
+    const category=document.createElement("p");
+    category.className="muted";
+    category.textContent="Kategori: "+food.food_category;
+
+    const stock=document.createElement("p");
+    stock.className="stock";
+    stock.textContent="Stok tersedia: "+food.quantity;
+
+    const quantityLabel=document.createElement("label");
+    quantityLabel.textContent="Kuantiti tuntutan:";
+
+    const quantity=document.createElement("input");
+    quantity.type="number";
+    quantity.min="1";
+    quantity.max=String(food.quantity);
+    quantity.value="1";
+    quantity.id="quantity-"+food.id;
+
+    const button=document.createElement("button");
+    button.textContent="Submit Food Claim";
+
+    button.addEventListener("click",async()=>{
+      const requestedQuantity=Number(quantity.value);
+
+      if(!Number.isInteger(requestedQuantity)||
+         requestedQuantity<1||
+         requestedQuantity>food.quantity){
+        alert("Sila masukkan kuantiti antara 1 hingga "+food.quantity+".");
+        return;
+      }
+
+      button.disabled=true;
+      button.textContent="Submitting...";
+
+      const {data,error}=await supabaseClient.rpc(
+        "submit_food_claim",
+        {
+          p_inventory_id:food.id,
+          p_quantity:requestedQuantity
+        }
+      );
+
+      button.disabled=false;
+      button.textContent="Submit Food Claim";
+
+      if(error){
+        alert("Tuntutan gagal: "+error.message);
+        await loadInventory();
+        return;
+      }
+
+      const result=Array.isArray(data)?data[0]:data;
+
+      if(!result){
+        alert("Tiada maklumat tuntutan diterima.");
+        return;
+      }
+
+      alert(
+        "Tuntutan berjaya dihantar!\n"+
+        "Kod tuntutan: "+result.claim_code+
+        "\nStatus: "+statusLabel(result.claim_status)
+      );
+
+      await loadInventory();
+      await loadClaims();
+    });
+
+    item.append(name,category,stock,quantityLabel,quantity,button);
+    inventory.appendChild(item);
+  });
+}
+
+async function loadClaims(){
+  const {data:claims,error}=await supabaseClient
     .from("food_transactions")
-    .select("id, quantity, claim_code, status, claimed_at, created_at")
-    .eq("student_id", user.id)
-    .order("created_at", { ascending: false });
+    .select("id,inventory_id,quantity,claim_code,status,created_at")
+    .eq("student_id",currentUser.id)
+    .order("created_at",{ascending:false});
 
-  if (error) {
-    message.textContent = "Tidak dapat memuatkan rekod: " + error.message;
+  if(error){
+    claimMessage.textContent="Ralat memuatkan rekod: "+error.message;
     return;
   }
 
-  if (!claims || claims.length === 0) {
-    message.textContent = "Belum ada rekod tuntutan makanan untuk akaun anda.";
+  claimsContainer.innerHTML="";
+
+  if(!claims||claims.length===0){
+    claimMessage.textContent="Belum ada rekod tuntutan makanan.";
     return;
   }
 
-  message.textContent = "Nama pelajar: " + profile.full_name +
-    " · Jumlah rekod: " + claims.length;
+  claimMessage.textContent="Jumlah tuntutan: "+claims.length;
 
-  claimsContainer.innerHTML = "";
+  const inventoryIds=[...new Set(claims.map(c=>c.inventory_id))];
+  const {data:foods}=await supabaseClient
+    .from("food_inventory")
+    .select("id,food_name")
+    .in("id",inventoryIds);
 
-  claims.forEach((claim, index) => {
-    const item = document.createElement("div");
-    item.className = "claim";
+  const foodNames={};
+  (foods||[]).forEach(food=>{
+    foodNames[food.id]=food.food_name;
+  });
 
-    const title = document.createElement("h3");
-    title.className = "claim-id";
-    title.textContent = "Tuntutan #" + (index + 1);
+  claims.forEach((claim,index)=>{
+    const item=document.createElement("div");
+    item.className="claim";
 
-    const code = document.createElement("p");
-    code.textContent = "Kod tuntutan: " + claim.claim_code;
+    const title=document.createElement("h3");
+    title.textContent="Tuntutan #"+(index+1);
 
-    const quantity = document.createElement("p");
-    quantity.textContent = "Kuantiti: " + claim.quantity;
+    const food=document.createElement("p");
+    food.textContent="Makanan: "+(foodNames[claim.inventory_id]||"Rekod makanan");
 
-    const status = document.createElement("p");
-    status.className = "status";
-    status.textContent = "Status: " + statusLabel(claim.status);
+    const code=document.createElement("p");
+    code.className="claim-id";
+    code.textContent="Kod tuntutan: "+claim.claim_code;
 
-    const date = document.createElement("p");
-    date.className = "muted";
-    date.textContent = "Tarikh tuntutan: " + formatDate(claim.created_at);
+    const quantity=document.createElement("p");
+    quantity.textContent="Kuantiti: "+claim.quantity;
 
-    item.append(title, code, quantity, status, date);
+    const status=document.createElement("p");
+    status.className="status";
+    status.textContent="Status: "+statusLabel(claim.status);
+
+    const date=document.createElement("p");
+    date.className="muted";
+    date.textContent="Tarikh: "+formatDate(claim.created_at);
+
+    item.append(title,food,code,quantity,status,date);
     claimsContainer.appendChild(item);
   });
 }
 
-loadClaims();
+loadPage();
 </script>
 </body>
 </html>
